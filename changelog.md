@@ -1,3 +1,8 @@
+### TeXfireplace 3.0 (2023/10/07)
+
+- First release on GitHub.
+- Updating download links.
+
 ### TeXfireplace 2.3 (2023/08/21)
 
 - Optimizing the updating method
