@@ -11,15 +11,15 @@ Download the [installer][Download] (about 8MB) and run it! Internet connection i
 The _TeXfireplace_ installer downloads and installs the following programs: 
 
 - **MiKTeX**
-(https://miktex.org) <br>
+([https://miktex.org](https://miktex.org)) <br>
 A TeX distribution, portable _“just enough”_ basic version with updated packages, extended by `cm-super` and `latexmk`. _“Just enough”_ means that the users install just the TeX packages they need for their authoring tasks. This minimizes the installation time and the required disk space. The missing necessary TeX packages will be installed automatically from the Internet while the tex file is compiling.
 - **TLPerl** <br>
 Minimal Perl installation of [TeX Live](https://www.tug.org/texlive) for running `latexmk` (https://ctan.org/pkg/latexmk).
 - **Pygments**
-(https://pygments.org) <br>
-A Python library used by `minted` (https://ctan.org/pkg/minted) LaTeX package.
+([https://pygments.org](https://pygments.org)) <br>
+A Python library used by `minted` ([https://ctan.org/pkg/minted](https://ctan.org/pkg/minted)) LaTeX package.
 - **TeXstudio**
-(http://www.texstudio.org) <br>
+([http://www.texstudio.org](http://www.texstudio.org)) <br>
 Fully featured LaTeX-specific editor with integrated PDF viewer. Portable version, modified default settings. By default, the `latexmk` automates the process of compiling the LaTeX documents.
 - **TeXfireplace menu** <br>
 Functions: Running TeXstudio, MiKTeX console, terminal, and texdoc. Restoring (modified) default TeXstudio settings, and updating all components. 
