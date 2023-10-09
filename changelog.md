@@ -1,6 +1,6 @@
 # TeXfireplace version history
 
-### TeXfireplace 3.0 (2023/10/08)
+### TeXfireplace 3.0 (2023/10/09)
 
 - First release on GitHub.
 - Updating download links.
