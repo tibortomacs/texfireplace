@@ -2,8 +2,9 @@
 
 ### TeXfireplace 3.0 (2023/10/09)
 
-- First release on GitHub.
-- Updating download links.
+- First release on GitHub
+- Updating download links
+- Fixed a scaling bug (disable DPI awareness and LCL scaling)
 
 ### TeXfireplace 2.3 (2023/08/21)
 
@@ -19,20 +20,20 @@
 
 ### TeXfireplace 2.0 (2023/04/20)
 
-- Added Pygments for the minted LaTeX package.
+- Added Pygments for the minted LaTeX package
 
 ### TeXfireplace 1.9 (2022/11/27)
 
-- Alternate download address for TLPerl (in texfpinst.bat and update.bat).
-- Changing 'http' to 'https' in default TLPerl address (in texfpinst.bat and update.bat).
+- Alternate download address for TLPerl (in texfpinst.bat and update.bat)
+- Changing 'http' to 'https' in default TLPerl address (in texfpinst.bat and update.bat)
 
 ### TeXfireplace 1.8 (2022/11/19)
 
-- Automatic icon theme setting in TeXstudio.
+- Automatic icon theme setting in TeXstudio
 
 ### TeXfireplace 1.7 (2022/10/18)
 
-- If the MiKTeX installer does not create pdflatex.exe, latexmk.exe, etc., then the TeXfireplace does it.
+- If the MiKTeX installer does not create pdflatex.exe, latexmk.exe, etc., then the TeXfireplace does it
 
 ### TeXfireplace 1.6 (2022/05/24)
 
