@@ -1,5 +1,9 @@
 # TeXfireplace version history
 
+### TeXfireplace 3.1 (2023/10/19)
+
+- New Pygments installing method with up-to-date Python
+
 ### TeXfireplace 3.0 (2023/10/09)
 
 - First release on GitHub
