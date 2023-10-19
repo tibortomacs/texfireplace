@@ -1,12 +1,10 @@
 [Download]: https://github.com/tibortomacs/texfireplace/releases/download/latest/texfp-inst.exe
 
----
-#### 〔 [What is LaTeX?](whatislatex.md) 〕〔 [TeXfireplace version history](changelog.md) 〕
----
-
 ![](./images/texfireplace.png)
 
 # An easy-to-install compact framework for using LaTeX on Windows
+
+#### 〔 [What is LaTeX?](whatislatex.md) 〕〔 [TeXfireplace version history](changelog.md) 〕
 
 ### Installing
 
