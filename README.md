@@ -30,7 +30,9 @@ A Python library used by `minted` ([https://ctan.org/pkg/minted](https://ctan.or
 ([http://www.texstudio.org](http://www.texstudio.org)) <br>
 Fully featured LaTeX-specific editor with integrated PDF viewer. Portable version, modified default settings. By default, the `latexmk` automates the process of compiling the LaTeX documents.
 - **TeXfireplace menu** <br>
-Functions: Running TeXstudio, MiKTeX console, terminal, and texdoc. Restoring (modified) default TeXstudio settings, and updating all components. 
+  - Running TeXstudio, MiKTeX console, terminal, and `texdoc`.
+  - Restoring (modified) default TeXstudio settings.
+  - Updating all components.
 
 ### Copyright ©
 
@@ -39,10 +41,5 @@ MiKTeX: Christian Schenk <br>
 TeXstudio: Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann <br>
 Pygments: Georg Brandl, Matthäus Chajdas and contributors
 
----
-
-_The TeXfireplace icon is provided by Recognize (recognizeapp.com) as Creative Commons Attribution 4.0 International License._
-
-_The TeXfireplace installer and menu are freeware, closed source projects._
-
----
+> _The TeXfireplace icon is provided by Recognize (recognizeapp.com) as Creative Commons Attribution 4.0 International License._
+> _The TeXfireplace installer and menu are freeware, closed source projects._
