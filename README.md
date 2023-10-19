@@ -1,12 +1,20 @@
 [Download]: https://github.com/tibortomacs/texfireplace/releases/download/latest/texfp-inst.exe
 
+---
+#### 〔 [What is LaTeX?](whatislatex.md) 〕〔 [TeXfireplace version history](changelog.md) 〕
+---
+
 ![](./images/texfireplace.png)
 
 # An easy-to-install compact framework for using LaTeX on Windows
 
+### Installing
+
 Download the [installer][Download] (about 8MB) and run it! Internet connection is required for installation. After finishing the process (about 5-10 minutes) the TeXfireplace menu opens automatically. Click the TeXstudio menu item and happy LaTeXing! 
 
 [<img src="./images/download.png" width="200">][Download]
+
+### TeXfireplace components
 
 The _TeXfireplace_ installer downloads and installs the following programs: 
 
@@ -24,10 +32,6 @@ Fully featured LaTeX-specific editor with integrated PDF viewer. Portable versio
 - **TeXfireplace menu** <br>
 Functions: Running TeXstudio, MiKTeX console, terminal, and texdoc. Restoring (modified) default TeXstudio settings, and updating all components. 
 
-### Version history
-
-See the [changelog](changelog.md).
-
 ### Copyright ©
 
 TeXfireplace: Tibor Tómács <br>
@@ -35,8 +39,10 @@ MiKTeX: Christian Schenk <br>
 TeXstudio: Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann <br>
 Pygments: Georg Brandl, Matthäus Chajdas and contributors
 
-<hr>
+---
 
-The TeXfireplace icon is provided by Recognize (recognizeapp.com) as Creative Commons Attribution 4.0 International License.
+_The TeXfireplace icon is provided by Recognize (recognizeapp.com) as Creative Commons Attribution 4.0 International License._
 
-**_The TeXfireplace installer and menu are freeware, closed source projects._**
+_The TeXfireplace installer and menu are freeware, closed source projects._
+
+---
