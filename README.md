@@ -39,5 +39,7 @@ MiKTeX: Christian Schenk <br>
 TeXstudio: Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann <br>
 Pygments: Georg Brandl, Matthäus Chajdas and contributors
 
-> _The TeXfireplace icon is provided by Recognize (recognizeapp.com) as Creative Commons Attribution 4.0 International License._
+<br>
+
+> _The TeXfireplace icon is provided by Recognize (recognizeapp.com) as Creative Commons Attribution 4.0 International License._ <br>
 > _The TeXfireplace installer and menu are freeware, closed source projects._
