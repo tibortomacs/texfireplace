@@ -5,8 +5,8 @@ Unlike common word processors such as Microsoft Word or LibreOffice Writer, LaTe
 With LaTeX one takes plain text and enriches it with markup. 
 This markup tells LaTeX about the logical meaning of certain elements of the text, similar to the way HTML does.
 
-Using LaTeX requires a TeX distribution. 
-It is a collections of packages and programs (compilers, fonts, and macro packages) that can turn the LaTeX source code into a printable output format (usually PDF).
+To use LaTeX you need a TeX distribution.
+This is a collection of packages and programs (compilers, fonts and macro packages) that can convert the LaTeX source code into a printable output format (usually PDF).
 
-LaTeX source codes are simply plain text, so they can be edited with any text editor (e.g. Notepad). 
-However, it’s most convenient to have an editor that is designed to work with LaTeX, as they provide features like one-click compilation of your files, built-in PDF viewers, and syntax highlighting.
+LaTeX source code is simply plain text, so it can be edited with any text editor (e.g. Notepad).
+However, it's most convenient to use an editor designed for working with LaTeX, as it provides features such as one-click compilation of your files, built-in PDF viewers, and syntax highlighting.
