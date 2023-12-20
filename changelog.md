@@ -1,5 +1,10 @@
 # TeXfireplace version history
 
+### TeXfireplace 3.3 (2023/12/20)
+
+- Better TeXstudioChangeLanguage procedure in TeXfireplace menu
+- Added German, French, and Russian translate by Google Translate. Now the supported languages: English, French, German, Hungarian, Russian.
+
 ### TeXfireplace 3.2 (2023/12/19)
 
 - Fixed some translation errors
