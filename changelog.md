@@ -1,9 +1,14 @@
 # TeXfireplace version history
 
+### TeXfireplace 3.4 (2024/01/06)
+
+- Fixed a minor bug of the 'About' dialog.
+- Changed the default installation target path in the installer
+
 ### TeXfireplace 3.3 (2023/12/22)
 
 - Better TeXstudioChangeLanguage procedure in TeXfireplace menu
-- Added German, French, and Russian translation using Google Translate. Now supported languages: English, French, German, Hungarian, Russian.
+- Added German, French, and Russian translation using Google Translate. Now supported languages: English, French, German, Hungarian, Russian
 
 ### TeXfireplace 3.2 (2023/12/19)
 
