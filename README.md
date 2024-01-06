@@ -1,4 +1,4 @@
-[Download]: https://github.com/tibortomacs/texfireplace/releases/download/latest/texfp-inst.exe
+[Download]: https://github.com/tibortomacs/texfireplace/releases/download/latest/texfireplace3.3.exe
 
 ![](./images/texfireplace.png)
 
