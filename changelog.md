@@ -4,6 +4,7 @@
 
 - Fixed a minor bug of the 'About' dialog.
 - Changed the default installation target path in the installer
+- Changed the beginning of the installation process.
 
 ### TeXfireplace 3.3 (2023/12/22)
 
