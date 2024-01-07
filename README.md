@@ -1,4 +1,4 @@
-[Download]: https://github.com/tibortomacs/texfireplace/releases/download/latest/texfireplace3.4.exe
+[Download]: https://github.com/tibortomacs/texfireplace/releases/download/latest/texfpinstaller.exe
 
 ![](./images/texfireplace.png)
 
@@ -8,7 +8,7 @@
 
 ### Installing
 
-Download the [installer][Download] (about 8MB) and run it! Internet connection is required for installation. After finishing the process (about 5-10 minutes) the TeXfireplace menu opens automatically. Click the TeXstudio menu item and happy LaTeXing! 
+Download the [installer][Download] (about 4MB) and run it! Internet connection is required for installation. After finishing the process (about 5-10 minutes) the TeXfireplace menu opens automatically. Click the TeXstudio menu item and happy LaTeXing! 
 
 [<img src="./images/download.png" width="200">][Download]
 
