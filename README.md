@@ -21,7 +21,7 @@ Another option is to open a text editor, copy the following lines, save them in 
     cd /d "%dir%"
     curl -L -o %file% %url%%file%
     unzip %file%
-    start /min texfpinstall.exe
+    start /min texfpinstall
 
 ### TeXfireplace components
 
