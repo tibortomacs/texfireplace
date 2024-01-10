@@ -14,12 +14,12 @@ Download the [installer][Download] (about 4MB) and run it! Internet connection i
 
 Another option is to open a text editor, copy the following lines, save them in a file with a `.bat` extension, and then run the file.
 
-    set url=https://github.com/tibortomacs/texfireplace/releases/download/latest/
+    set url=https://github.com/tibortomacs/texfireplace/releases/download/latest
     set file=texfp-inst.zip
     set dir=%temp%\texfp%random%
     md "%dir%"
     cd /d "%dir%"
-    curl -L -o %file% %url%%file%
+    curl -L -o %file% %url%/%file%
     unzip %file%
     start /min texfpinstall
 
