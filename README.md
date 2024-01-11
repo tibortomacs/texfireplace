@@ -16,9 +16,9 @@ Another option is to open a text editor, copy the following lines, save them in 
 
     set url=https://github.com/tibortomacs/texfireplace/releases/download/latest
     set file=texfp-inst.zip
-    set dir=%temp%\texfp%random%
-    md "%dir%"
-    cd /d "%dir%"
+    set tempdir=%temp%\texfp%random%
+    md "%tempdir%"
+    cd /d "%tempdir%"
     curl -L -o %file% %url%/%file%
     unzip %file%
     start /min texfpinstall
