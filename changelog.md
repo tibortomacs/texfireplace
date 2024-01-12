@@ -1,9 +1,9 @@
 # TeXfireplace version history
 
-### TeXfireplace 3.5 (2024/01/09)
+### TeXfireplace 3.5 (2024/01/12)
 
 - More optimal installation start
-- Changed 'wget' with 'curl' (removed 'tools' directory)
+- Changed 'wget' with 'curl' and 'unzip' with "tar" (removed 'tools' directory)
 
 ### TeXfireplace 3.4 (2024/01/06)
 
