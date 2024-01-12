@@ -20,7 +20,7 @@ Another option is to open a text editor, copy the following lines, save them in 
     md "%tempdir%"
     cd /d "%tempdir%"
     curl -L -o %file% %url%/%file%
-    unzip %file%
+    tar -xf %file%
     start /min texfpinstall
 
 ### TeXfireplace components
