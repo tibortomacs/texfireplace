@@ -30,8 +30,8 @@ The _TeXfireplace_ installer downloads and installs the following programs:
 - **MiKTeX**
 ([https://miktex.org](https://miktex.org)) <br>
 A TeX distribution, portable _“just enough”_ basic version with updated packages, extended by `cm-super` and `latexmk`. _“Just enough”_ means that the users install just the TeX packages they need for their authoring tasks. This minimizes the installation time and the required disk space. The missing necessary TeX packages will be installed automatically from the Internet while the tex file is compiling.
-- **TLPerl** <br>
-Minimal Perl installation of [TeX Live](https://www.tug.org/texlive) for running `latexmk` ([https://ctan.org/pkg/latexmk](https://ctan.org/pkg/latexmk)).
+- **Strawberry Perl** <br>
+It is for running Perl scripts such as `latexmk` ([https://ctan.org/pkg/latexmk](https://ctan.org/pkg/latexmk)).
 - **Pygments**
 ([https://pygments.org](https://pygments.org)) <br>
 A Python library used by `minted` ([https://ctan.org/pkg/minted](https://ctan.org/pkg/minted)) LaTeX package.

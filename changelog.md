@@ -1,9 +1,15 @@
 # TeXfireplace version history
 
+### TeXfireplace 4.0 (2024/02/02)
+
+- TLPerl replaced by Strawberry Perl
+- The 'pygments' directory renamed to 'python'
+- New item: postinstall.bat
+
 ### TeXfireplace 3.5 (2024/01/12)
 
 - More optimal installation start
-- Changed 'wget' with 'curl' and 'unzip' with "tar" (removed 'tools' directory)
+- Changed 'wget' with 'curl' and 'unzip' with 'tar' (removed 'tools' directory)
 
 ### TeXfireplace 3.4 (2024/01/06)
 
