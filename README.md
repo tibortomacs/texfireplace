@@ -12,7 +12,7 @@ Download the [installer][Download] (about 4MB) and run it! Internet connection i
 
 [<img src="./images/download.png" width="200">][Download]
 
-Another option is to open a text editor, copy the following lines, save them in a file with a `.bat` extension, and then run the file.
+Another way is to open a text editor, copy the following lines, save them in a file with the extension `.bat`, and then run it.
 
     set url=https://github.com/tibortomacs/texfireplace/releases/download/latest
     set file=texfp-inst.zip
@@ -30,7 +30,8 @@ The _TeXfireplace_ installer downloads and installs the following programs:
 - **MiKTeX**
 ([https://miktex.org](https://miktex.org)) <br>
 A TeX distribution, portable _“just enough”_ basic version with updated packages, extended by `cm-super` and `latexmk`. _“Just enough”_ means that the users install just the TeX packages they need for their authoring tasks. This minimizes the installation time and the required disk space. The missing necessary TeX packages will be installed automatically from the Internet while the tex file is compiling.
-- **Strawberry Perl** <br>
+- **Strawberry Perl**
+([https://strawberryperl.com](https://strawberryperl.com)) <br>
 It is for running Perl scripts such as `latexmk` ([https://ctan.org/pkg/latexmk](https://ctan.org/pkg/latexmk)).
 - **Pygments**
 ([https://pygments.org](https://pygments.org)) <br>
