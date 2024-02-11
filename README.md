@@ -37,7 +37,7 @@ It is for running Perl scripts such as `latexmk` ([https://ctan.org/pkg/latexmk]
 ([https://pygments.org](https://pygments.org)) <br>
 A Python library used by `minted` ([https://ctan.org/pkg/minted](https://ctan.org/pkg/minted)) LaTeX package.
 - **TeXstudio**
-([http://www.texstudio.org](http://www.texstudio.org)) <br>
+([https://www.texstudio.org/](https://www.texstudio.org/)) <br>
 Fully featured LaTeX-specific editor with integrated PDF viewer. Portable version, modified default settings. By default, the `latexmk` automates the process of compiling the LaTeX documents.
 - **TeXfireplace menu** <br>
   - Running TeXstudio, MiKTeX console, terminal, and `texdoc`.
@@ -45,14 +45,10 @@ Fully featured LaTeX-specific editor with integrated PDF viewer. Portable versio
   - Updating all components.
   - Supported languages: English, French, German, Hungarian, Russian.
 
-### Copyright ©
+### License
 
-TeXfireplace: Tibor Tómács <br>
-MiKTeX: Christian Schenk <br>
-TeXstudio: Benito van der Zander, Jan Sundermeyer, Daniel Braun, Tim Hoffmann <br>
-Pygments: Georg Brandl, Matthäus Chajdas and contributors
+The TeXfireplace installer and menu are free but closed-source programs.
 
-<br>
+TeXfireplace © 2022-2024 by Tibor Tómács is licensed under CC BY-NC-ND 4.0. To view a copy of this license, visit [https://creativecommons.org/licenses/by-nc-nd/4.0](https://creativecommons.org/licenses/by-nc-nd/4.0)
 
-> _The TeXfireplace icon is provided by Recognize (recognizeapp.com) as Creative Commons Attribution 4.0 International License._ <br>
-> _The TeXfireplace installer and menu are freeware, closed source projects._
+The TeXfireplace icon is provided by Recognize (recognizeapp.com) as Creative Commons Attribution 4.0 International License.
