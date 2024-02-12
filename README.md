@@ -45,9 +45,9 @@ Fully featured LaTeX-specific editor with integrated PDF viewer. Portable versio
   - Updating all components.
   - Supported languages: English, French, German, Hungarian, Russian.
 
-### License
-
 The TeXfireplace installer and menu are free but closed-source programs.
+
+### License
 
 TeXfireplace © 2022-2024 by Tibor Tómács is licensed under CC BY-NC-ND 4.0. To view a copy of this license, visit [https://creativecommons.org/licenses/by-nc-nd/4.0](https://creativecommons.org/licenses/by-nc-nd/4.0)
 
