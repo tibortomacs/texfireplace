@@ -1,5 +1,10 @@
 # TeXfireplace version history
 
+### TeXfireplace 4.1 (2024/03/20)
+
+- Fixed a new bug of the Python installation
+- Removing unnecessary codes from update.bat
+
 ### TeXfireplace 4.0 (2024/02/11)
 
 - TLPerl replaced by Strawberry Perl
