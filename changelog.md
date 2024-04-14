@@ -1,5 +1,9 @@
 # TeXfireplace version history
 
+### TeXfireplace 4.2 (2024/04/14)
+
+- Small change in the default TeXstudio settings
+
 ### TeXfireplace 4.1 (2024/03/20)
 
 - Fixed a new bug of the Python installation
