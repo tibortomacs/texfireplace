@@ -51,7 +51,7 @@ Restoring (modified) default TeXstudio settings.
 Updating all components.
 Supported languages: English, French, German, Hungarian, Russian.
 
-_The TeXfireplace installer and menu are free but closed-source programs._
+_The TeXfireplace installer and menu are free but closed-source programs maintained by [Tibor Tómács](https://mailhide.io/e/xjXsYH6m)._
 
 **[TeXfireplace version history](changelog.md)**
 
