@@ -1,6 +1,6 @@
 # TeXfireplace version history
 
-### TeXfireplace 5.0 (2024/11/14)
+### TeXfireplace 5.0 (2024/11/15)
 
 - TeXfireplace menu moved to Start menu
 - New installer

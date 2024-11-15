@@ -181,6 +181,7 @@ end;
 procedure TFormInstall.ButtonInstallClick(Sender: TObject);
 var
   perl, python, path: string;
+  f: text;
   ProcessDownload, ProcessInstall, ProcessViewLog: TProcess;
   topcoord: integer = 115;
   diff: integer = 25;
@@ -205,14 +206,25 @@ begin
   if RadioButtonReg.Checked then path := 'reg';
 
   ProcessDownload := TProcess.Create(nil);
-  ProcessDownload.InheritHandles := false;
-  ProcessDownload.ShowWindow := swoHide;
-  ProcessDownload.Options:=[poWaitOnExit];
-  ProcessDownload.Executable := 'cmd.exe';
-  ProcessDownload.Parameters.Add('/c');
-  ProcessDownload.Parameters.Add('curl -L -o texfireplaceinstall.bat --output-dir "%temp%" https://tibortomacs.github.io/texfireplace/source/texfireplaceinstall.bat');
-  ProcessDownload.Execute;
-  ProcessDownload.Free;
+  try
+    ProcessDownload.InheritHandles := false;
+    ProcessDownload.ShowWindow := swoHide;
+    ProcessDownload.Executable := 'cmd.exe';
+    ProcessDownload.Parameters.Add('/c');
+    ProcessDownload.Parameters.Add('curl -f -L -o texfireplaceinstall.bat --output-dir "%temp%" https://tibortomacs.github.io/texfireplace/source/texfireplaceinstall.bat');
+    ProcessDownload.Execute;
+    ProcessDownload.WaitOnExit;
+  finally
+    ProcessDownload.Free;
+  end;
+
+  if not FileExists(GetTempDir + 'texfireplaceinstall.bat') then begin
+    assignfile(f,GetTempDir + 'texfireplaceinstall.bat');
+    rewrite(f);
+    writeln(f,'echo ERROR: %temp%\texfireplaceinstall.bat > "%temp%\texfireplaceinstall.log"');
+    writeln(f,'exit /b 1');
+    closefile(f);
+  end;
 
   ProcessInstall := TProcess.Create(nil);
   try

@@ -1,7 +1,11 @@
 @echo off
-chcp 65001
+chcp 65001 >nul
 
-if exist "%~dp0texfireplace.lpi" exit /b
+if "%1"=="" (
+echo This batch file is used by texfireplace.exe, do not run it independently!
+pause
+exit /b
+)
 
 set "texfireplaceversion=v5.0"
 
@@ -50,7 +54,7 @@ reg delete "HKCU\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall
 
 echo MiKTeX >> "%temp%\texfireplaceinstall.log"
 echo. > "%temp%\texfireplaceinstall-miktex.txt"
-curl -L -o miktex.zip https://miktex.org/download/win/miktexsetup-x64.zip
+curl -f -L -o miktex.zip https://miktex.org/download/win/miktexsetup-x64.zip
 tar -xf miktex.zip
 if not exist miktexsetup_standalone.exe set "exit_code=1" & echo ERROR: miktexsetup_standalone.exe >> "%temp%\texfireplaceinstall.log" & goto endinstall
 miktexsetup_standalone --local-package-repository="%tempdir%\miktexinst" --package-set=basic download
@@ -68,12 +72,12 @@ del "%texdir%\miktex-portable.cmd"
 if not "%perlsystem%"=="strawberry" goto endstrawberry
 echo Strawberry Perl >> "%temp%\texfireplaceinstall.log"
 echo. > "%temp%\texfireplaceinstall-perl.txt"
-curl -L -o strawberryperl.html https://strawberryperl.com/releases.html
+curl -f -L -o strawberryperl.html https://strawberryperl.com/releases.html
 for /f "tokens=1 delims=" %%a in ('findstr "portable.zip" "%tempdir%\strawberryperl.html"') do set "perlurl=%%a" & goto perlnextstep
 :perlnextstep
 for /f tokens^=2^ delims^=^" %%a in ('echo "%perlurl%"') do set "perlurl=%%a"
-curl -L -o perl.zip %perlurl%
-if not exist "%tempdir%\perl.zip" curl -L -o perl.zip https://github.com/StrawberryPerl/Perl-Dist-Strawberry/releases/download/SP_53822_64bit/strawberry-perl-5.38.2.2-64bit-portable.zip
+curl -f -L -o perl.zip %perlurl%
+if not exist "%tempdir%\perl.zip" curl -f -L -o perl.zip https://github.com/StrawberryPerl/Perl-Dist-Strawberry/releases/download/SP_53822_64bit/strawberry-perl-5.38.2.2-64bit-portable.zip
 mkdir "%tempdir%\perl"
 tar -xf "%tempdir%\perl.zip" -C "%tempdir%\perl"
 if not exist "%tempdir%\perl\perl" set "exit_code=1" & echo ERROR: %tempdir%\perl\perl >> "%temp%\texfireplaceinstall.log" & goto endinstall
@@ -85,8 +89,8 @@ move /y "%tempdir%\perl\perl" "%texdir%\perl"
 if not "%perlsystem%"=="tlperl" goto endtlperl
 echo TLPerl >> "%temp%\texfireplaceinstall.log"
 echo. > "%temp%\texfireplaceinstall-perl.txt"
-curl -L -o install-tl.zip https://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip
-if not exist "%tempdir%\install-tl.zip" curl -L -o install-tl.zip https://ctan.math.washington.edu/tex-archive/systems/texlive/tlnet/install-tl.zip
+curl -f -L -o install-tl.zip https://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip
+if not exist "%tempdir%\install-tl.zip" curl -f -L -o install-tl.zip https://ctan.math.washington.edu/tex-archive/systems/texlive/tlnet/install-tl.zip
 mkdir "%tempdir%\tl"
 tar -xf "%tempdir%\install-tl.zip" -C "%tempdir%\tl"
 dir /B /A:D "%tempdir%\tl" > "%tempdir%\tlinfo.txt"
@@ -100,18 +104,18 @@ move /y "%tempdir%\tl\%tldir%\tlpkg\tlperl" "%texdir%\perl"
 if not "%python%"=="yes" goto endpython
 echo Python >> "%temp%\texfireplaceinstall.log"
 echo. > "%temp%\texfireplaceinstall-python.txt"
-curl -L -o python.html https://docs.python.org/
+curl -f -L -o python.html https://docs.python.org/
 for /f "usebackq tokens=5,6" %%i in ("%tempdir%\python.html") do if "%%j"=="Documentation</title><meta" set "pythonver=%%i"
 set "pythonver=%pythonver:<= %"
 set "pythonver=%pythonver:>= %"
 for /f "tokens=3" %%i in ('echo %pythonver%') do set "pythonver=%%i"
-curl -L -o python.zip https://www.python.org/ftp/python/%pythonver%/python-%pythonver%-embed-amd64.zip
-if not exist "%tempdir%\python.zip" curl -L -o python.zip https://www.python.org/ftp/python/3.12.2/python-3.12.2-embed-amd64.zip
+curl -f -L -o python.zip https://www.python.org/ftp/python/%pythonver%/python-%pythonver%-embed-amd64.zip
+if not exist "%tempdir%\python.zip" curl -f -L -o python.zip https://www.python.org/ftp/python/3.12.2/python-3.12.2-embed-amd64.zip
 mkdir "%texdir%\python"
 tar -xf "%tempdir%\python.zip" -C "%texdir%\python"
 if not exist "%texdir%\python\*._pth" set "exit_code=1" & echo ERROR: %texdir%\python >> "%temp%\texfireplaceinstall.log" & goto endinstall
 rename "%texdir%\python\*._pth" "*.pth"
-curl -L -o get-pip.py https://bootstrap.pypa.io/get-pip.py
+curl -f -L -o get-pip.py https://bootstrap.pypa.io/get-pip.py
 if not exist "%tempdir%\get-pip.py" set "exit_code=1" & echo ERROR: get-pip.py >> "%temp%\texfireplaceinstall.log" & goto endinstall
 "%texdir%\python\python.exe" "%tempdir%\get-pip.py"
 "%texdir%\python\python.exe" -m pip install latexminted
@@ -121,13 +125,13 @@ if not exist "%tempdir%\get-pip.py" set "exit_code=1" & echo ERROR: get-pip.py >
 
 echo TeXstudio >> "%temp%\texfireplaceinstall.log"
 echo. > "%temp%\texfireplaceinstall-texstudio.txt"
-curl -L -o texstudio.html https://www.texstudio.org/
+curl -f -L -o texstudio.html https://www.texstudio.org/
 for /f "tokens=1 delims=" %%a in ('findstr "win-portable-qt6.zip" "%tempdir%\texstudio.html"') do set "txsurl=%%a" & goto texstudionextstep
 :texstudionextstep
 for /f tokens^=4^ delims^=^" %%a in ('echo "%txsurl%"') do set "txsurl=%%a"
 for /f "tokens=3 delims=-" %%a in ('echo "%txsurl%"') do set "txsver=%%a"
-curl -L -o texstudio.zip %txsurl%
-if not exist "%tempdir%\texstudio.zip" curl -L -o texstudio.zip https://github.com/texstudio-org/texstudio/releases/download/4.8.4/texstudio-4.8.4-win-portable-qt6.zip
+curl -f -L -o texstudio.zip %txsurl%
+if not exist "%tempdir%\texstudio.zip" curl -f -L -o texstudio.zip https://github.com/texstudio-org/texstudio/releases/download/4.8.4/texstudio-4.8.4-win-portable-qt6.zip
 mkdir "%texdir%\texstudio"
 tar -xf "%tempdir%\texstudio.zip" -C "%texdir%\texstudio"
 if not exist "%texdir%\texstudio\texstudio.exe" set "exit_code=1" & echo ERROR: %texdir%\texstudio\texstudio.exe >> "%temp%\texfireplaceinstall.log" & goto endinstall
@@ -155,7 +159,8 @@ echo %txsver%> "%texdir%\texstudio\version.inf"
 
 :: texstudio.ini
 
-curl -L -o texstudio.ini --output-dir "%texdir%\texstudio\config" https://tibortomacs.github.io/texfireplace/source/texstudio.ini
+curl -f -L -o texstudio.ini --output-dir "%texdir%\texstudio\config" https://tibortomacs.github.io/texfireplace/source/texstudio.ini
+if not exist "%texdir%\texstudio\config\texstudio.ini" set "exit_code=1" & echo ERROR: %texdir%\texstudio\config\texstudio.ini >> "%temp%\texfireplaceinstall.log" & goto endinstall
 if not "%writepathin%"=="txsini" goto endtxsini
 set "userpath="
 if "%python%"=="yes" set "userpath=;%texdir%\python;%texdir%\python\Scripts"
@@ -214,7 +219,7 @@ echo echo Updating TeXstudio
 echo echo ------------------
 echo echo.
 echo set "status=completed"
-echo curl -L -o texstudio.html https://www.texstudio.org/
+echo curl -f -L -o texstudio.html https://www.texstudio.org/
 echo for /f "tokens=1 delims=" %%%%a in ('findstr "win-portable-qt6.zip" "%%~dp0texstudio.html"'^) do set "txsurl=%%%%a" ^& goto texstudionextstep
 echo :texstudionextstep
 echo del "%%~dp0texstudio.html"
@@ -222,7 +227,7 @@ echo for /f tokens^^=4^^ delims^^=^^" %%%%a in ('echo "%%txsurl%%"') do set "txs
 echo for /f "tokens=3 delims=-" %%%%a in ('echo "%%txsurl%%"'^) do set "txsver=%%%%a"
 echo set /p actualtxsver=^<"%%~dp0texstudio\version.inf"
 echo if [%%actualtxsver%%]==[%%txsver%%] goto endupdate
-echo curl -L -o texstudio.zip %%txsurl%%
+echo curl -f -L -o texstudio.zip %%txsurl%%
 echo mkdir "%%~dp0texstudio-new"
 echo tar -xf "%%~dp0texstudio.zip" -C "%%~dp0texstudio-new"
 echo del "%%~dp0texstudio.zip"
@@ -282,7 +287,8 @@ echo pause
 
 :: texfireplace.ico
 
-curl -L -o texfireplace.ico --output-dir "%texdir%" https://tibortomacs.github.io/texfireplace/source/texfireplace.ico
+curl -f -L -o texfireplace.ico --output-dir "%texdir%" https://tibortomacs.github.io/texfireplace/source/texfireplace.ico
+if not exist "%texdir%\texfireplace.ico" set "exit_code=1" & echo ERROR: %texdir%\texfireplace.ico >> "%temp%\texfireplaceinstall.log" & goto endinstall
 
 :: Uninstall in registry
 
