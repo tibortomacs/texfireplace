@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="texfireplace.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="59"/>
+      </Unit>
+      <Unit>
+        <Filename Value="install.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormInstall"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="202"/>
+        <CursorPos X="45" Y="214"/>
+        <UsageCount Value="59"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="137" Column="52" TopLine="105"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="128" Column="33" TopLine="111"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="107" Column="64" TopLine="80"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="185" Column="3" TopLine="155"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="173" Column="60" TopLine="155"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="218" Column="49" TopLine="193"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="225" Column="7" TopLine="206"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="231" Column="46" TopLine="207"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="155" Column="18" TopLine="138"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="257" Column="94" TopLine="231"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="258" Column="94" TopLine="232"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="259" Column="94" TopLine="233"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="260" Column="94" TopLine="234"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="261" Column="94" TopLine="235"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="262" Column="94" TopLine="236"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Column="24"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="2" Column="22"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="5" Column="38"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="176" Column="19" TopLine="148"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="197" Column="101" TopLine="170"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="86" Column="31" TopLine="70"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="85" Column="10" TopLine="69"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="92" Column="48" TopLine="71"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="103" Column="37" TopLine="83"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="106" Column="115" TopLine="86"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="87" Column="96" TopLine="80"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="310" Column="50" TopLine="294"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="309" Column="50" TopLine="293"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="216" TopLine="196"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="215" TopLine="195"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>
