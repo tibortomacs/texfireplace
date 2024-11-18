@@ -201,7 +201,15 @@ echo chcp 65001^> nul
 echo title Updating TeXfireplace
 echo set /p ^< nul = "Press any key to update TeXfireplace . . ."
 echo pause ^> nul
+echo :startupdate
 echo cls
+echo tasklist /fi "ImageName eq texstudio.exe" /fo csv 2^>nul ^| find /I "texstudio.exe"^>nul
+echo if not "%%errorlevel%%"=="0" goto update
+echo echo TeXstudio is running!
+echo set /p ^< nul = "To update, close TeXstudio and then press any key . . ."
+echo pause ^> nul
+echo goto startupdate
+echo :update
 echo echo ---------------
 echo echo Updating MiKTeX
 echo echo ---------------
