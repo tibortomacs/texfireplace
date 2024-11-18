@@ -88,6 +88,10 @@ If Python has already been installed (not as part of a previous TeXfireplace ins
 Support for versions 4.3 and older has been discontinued.
 To upgrade from these versions, first uninstall them and then reinstall the current version.
 
+## Give feedback
+
+Feature requests, bug reports, and questions can be placed in the **[issue tracker](https://github.com/tibortomacs/texfireplace/issues)**. 
+
 ## License
 
 The TeXfireplace is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.
