@@ -40,6 +40,7 @@ type
     LabelInstall: TLabel;
     LabelSetup: TLabel;
     LabelWelcome: TLabel;
+    MemoInstallBat: TMemo;
     MemoWelcome: TMemo;
     NotebookInstall: TNotebook;
     PageInstall: TPage;
@@ -217,7 +218,7 @@ procedure TFormInstall.ButtonInstallClick(Sender: TObject);
 var
   perl, python, path: string;
   f: text;
-  ProcessDownload, ProcessInstall, ProcessViewLog: TProcess;
+  ProcessInstall, ProcessViewLog: TProcess;
   topcoord: integer = 115;
   diff: integer = 25;
 begin
@@ -240,18 +241,7 @@ begin
   if RadioButtonTxsvbs.Checked then path := 'txsvbs';
   if RadioButtonReg.Checked then path := 'reg';
 
-  ProcessDownload := TProcess.Create(nil);
-  try
-    ProcessDownload.InheritHandles := false;
-    ProcessDownload.ShowWindow := swoHide;
-    ProcessDownload.Executable := 'cmd.exe';
-    ProcessDownload.Parameters.Add('/c');
-    ProcessDownload.Parameters.Add('curl -s -f -L -o texfireplaceinstall.bat --output-dir "%temp%" https://tibortomacs.github.io/texfireplace/texfireplaceinstall.bat');
-    ProcessDownload.Execute;
-    ProcessDownload.WaitOnExit;
-  finally
-    ProcessDownload.Free;
-  end;
+  MemoInstallBat.Lines.SaveToFile(GetTempDir + 'texfireplaceinstall.bat');
 
   if not FileExists(GetTempDir + 'texfireplaceinstall.bat') then begin
     assignfile(f,GetTempDir + 'texfireplaceinstall.bat');

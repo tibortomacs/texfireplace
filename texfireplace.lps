@@ -21,18 +21,14 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="172"/>
-        <CursorPos X="70" Y="186"/>
+        <TopLine Value="209"/>
+        <CursorPos X="3" Y="221"/>
         <UsageCount Value="63"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="install.pas"/>
-        <Caret Line="218" Column="49" TopLine="193"/>
-      </Position>
       <Position>
         <Filename Value="install.pas"/>
         <Caret Line="225" Column="7" TopLine="206"/>
@@ -148,6 +144,10 @@
       <Position>
         <Filename Value="install.pas"/>
         <Caret Line="176" Column="34" TopLine="155"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="243" Column="3" TopLine="236"/>
       </Position>
     </JumpHistory>
     <RunParams>
