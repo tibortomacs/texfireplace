@@ -1,7 +1,7 @@
 object FormInstall: TFormInstall
-  Left = 666
+  Left = 860
   Height = 400
-  Top = 243
+  Top = 256
   Width = 560
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
@@ -1096,9 +1096,10 @@ object FormInstall: TFormInstall
         Left = 32
         Height = 19
         Top = 140
-        Width = 198
-        Caption = 'Python for minted LaTeX package'
+        Width = 266
+        Caption = 'Python/latexminted for minted LaTeX package'
         Checked = True
+        OnClick = CheckBoxPythonClick
         State = cbChecked
         TabOrder = 2
       end
@@ -1263,7 +1264,7 @@ object FormInstall: TFormInstall
       object ImageWarningPerl: TImage
         Left = 452
         Height = 21
-        Top = 181
+        Top = 183
         Width = 24
         AutoSize = True
         ParentShowHint = False
@@ -1304,7 +1305,7 @@ object FormInstall: TFormInstall
       object ImageWarningPath: TImage
         Left = 452
         Height = 21
-        Top = 259
+        Top = 260
         Width = 24
         AutoSize = True
         ParentShowHint = False

@@ -58,6 +58,7 @@ type
     procedure ButtonInstallClick(Sender: TObject);
     procedure ButtonNextClick(Sender: TObject);
     procedure CheckBoxMiktexClick(Sender: TObject);
+    procedure CheckBoxPythonClick(Sender: TObject);
     procedure CheckBoxTexstudioClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -86,28 +87,26 @@ begin
   ButtonInstall.Left := ButtonNext.Left;
 
   if (FindDefaultExecutablePath('perl.exe') <> '') and (Pos('texfireplace',LowerCase(FindDefaultExecutablePath('perl.exe'))) = 0) then begin
-    RadioGroupPerl.Enabled := false;
-    RadioButtonTlperl.Checked := false;
-    RadioButtonStrawberry.Checked := false;
     ImageWarningPerl.Hint := 'Perl is already installed.' + #10 + StringReplace(FindDefaultExecutablePath('perl.exe'),'\perl.exe','',[rfReplaceAll]);
     ImageWarningPerl.Visible := true;
   end;
 
   if (FindDefaultExecutablePath('python.exe') <> '') and (Pos('texfireplace',LowerCase(FindDefaultExecutablePath('python.exe'))) = 0) then begin
-    CheckBoxPython.Enabled := false;
-    CheckBoxPython.Checked := false;
     ImageWarningPython.Hint := 'Python is already installed.' + #10 + StringReplace(FindDefaultExecutablePath('python.exe'),'\python.exe','',[rfReplaceAll]);
     ImageWarningPython.Visible := true;
   end;
 
   if (FindDefaultExecutablePath('pdflatex.exe') <> '') and (Pos('texfireplace',LowerCase(FindDefaultExecutablePath('pdflatex.exe'))) = 0) then begin
+    ImageWarningTexsystem.Hint := 'TeX-system is already installed.' + #10 + StringReplace(FindDefaultExecutablePath('pdflatex.exe'),'\pdflatex.exe','',[rfReplaceAll]);
+    ImageWarningTexsystem.Visible := true;
+  end;
+
+  if ImageWarningPerl.Visible or ImageWarningPython.Visible or ImageWarningTexsystem.Visible then begin
     RadioButtonTxsini.Checked := false;
     RadioButtonTxsvbs.Checked := true;
     RadioButtonReg.Checked := false;
     RadioButtonTxsini.Enabled := false;
     RadioButtonReg.Enabled := false;
-    ImageWarningTexsystem.Hint := 'TeX-system is already installed.' + #10 + StringReplace(FindDefaultExecutablePath('pdflatex.exe'),'\pdflatex.exe','',[rfReplaceAll]);
-    ImageWarningTexsystem.Visible := true;
     ImageWarningPath.Hint := 'Due to the conditions,' + #10 + 'the PATH can only be written to the texstudio.vbs.';
     ImageWarningPath.Visible := true;
   end;
@@ -178,6 +177,36 @@ end;
 procedure TFormInstall.CheckBoxTexstudioClick(Sender: TObject);
 begin
   CheckBoxTexstudio.Checked := true;
+end;
+
+// -----------------------------------------------------
+// PYTHON CHECKBOX CLICK
+// -----------------------------------------------------
+
+procedure TFormInstall.CheckBoxPythonClick(Sender: TObject);
+begin
+  if (not CheckBoxPython.Checked) and
+     (MessageDlg('Are you sure you will never use the minted package?',mtConfirmation,[mbYes,mbNo],0) = mrNo) then CheckBoxPython.Checked := true;
+
+  if (ImageWarningPerl.Hint = '') and (ImageWarningTexsystem.Hint = '') then begin
+    RadioButtonTxsini.Checked := false;
+    RadioButtonTxsvbs.Checked := false;
+    RadioButtonReg.Checked := true;
+    RadioButtonTxsini.Enabled := true;
+    RadioButtonReg.Enabled := true;
+    ImageWarningPath.Hint := '';
+    ImageWarningPath.Visible := false;
+  end;
+
+  if (ImageWarningPerl.Hint <> '') or (ImageWarningTexsystem.Hint <> '') or ((CheckBoxPython.Checked) and (ImageWarningPython.Hint <> '')) then begin
+    RadioButtonTxsini.Checked := false;
+    RadioButtonTxsvbs.Checked := true;
+    RadioButtonReg.Checked := false;
+    RadioButtonTxsini.Enabled := false;
+    RadioButtonReg.Enabled := false;
+    ImageWarningPath.Hint := 'Due to the conditions,' + #10 + 'the PATH can only be written to the texstudio.vbs.';
+    ImageWarningPath.Visible := true;
+  end;
 end;
 
 // -----------------------------------------------------
