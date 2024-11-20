@@ -19,12 +19,16 @@ type
     CheckBoxTexstudio: TCheckBox;
     CheckBoxMiktex: TCheckBox;
     CheckBoxPython: TCheckBox;
+    ImageWarningPerl: TImage;
+    ImageWarningPath: TImage;
+    ImageWarningTexsystem: TImage;
     ImageCheckPython: TImage;
     ImageCheckTexstudio: TImage;
     ImageCheckRemove: TImage;
     ImageCheckMiktex: TImage;
     ImageCheckPerl: TImage;
     ImageCheckCompletion: TImage;
+    ImageWarningPython: TImage;
     ImageWelcome: TImage;
     LabelCompletion: TLabel;
     LabelTexstudio: TLabel;
@@ -85,15 +89,15 @@ begin
     RadioGroupPerl.Enabled := false;
     RadioButtonTlperl.Checked := false;
     RadioButtonStrawberry.Checked := false;
-    RadioGroupPerl.Hint := RadioGroupPerl.Hint + #10 + StringReplace(FindDefaultExecutablePath('perl.exe'),'\perl.exe','',[rfReplaceAll]);
-    RadioGroupPerl.ShowHint := true;
+    ImageWarningPerl.Hint := 'Perl is already installed.' + #10 + StringReplace(FindDefaultExecutablePath('perl.exe'),'\perl.exe','',[rfReplaceAll]);
+    ImageWarningPerl.Visible := true;
   end;
 
   if (FindDefaultExecutablePath('python.exe') <> '') and (Pos('texfireplace',LowerCase(FindDefaultExecutablePath('python.exe'))) = 0) then begin
     CheckBoxPython.Enabled := false;
     CheckBoxPython.Checked := false;
-    CheckBoxPython.Hint := CheckBoxPython.Hint + #10 + StringReplace(FindDefaultExecutablePath('python.exe'),'\python.exe','',[rfReplaceAll]);
-    CheckBoxPython.ShowHint := true;
+    ImageWarningPython.Hint := 'Python is already installed.' + #10 + StringReplace(FindDefaultExecutablePath('python.exe'),'\python.exe','',[rfReplaceAll]);
+    ImageWarningPython.Visible := true;
   end;
 
   if (FindDefaultExecutablePath('pdflatex.exe') <> '') and (Pos('texfireplace',LowerCase(FindDefaultExecutablePath('pdflatex.exe'))) = 0) then begin
@@ -102,8 +106,10 @@ begin
     RadioButtonReg.Checked := false;
     RadioButtonTxsini.Enabled := false;
     RadioButtonReg.Enabled := false;
-    RadioGroupPath.Hint := RadioGroupPath.Hint + #10 + StringReplace(FindDefaultExecutablePath('pdflatex.exe'),'\pdflatex.exe','',[rfReplaceAll]);
-    RadioGroupPath.ShowHint := true;
+    ImageWarningTexsystem.Hint := 'TeX-system is already installed.' + #10 + StringReplace(FindDefaultExecutablePath('pdflatex.exe'),'\pdflatex.exe','',[rfReplaceAll]);
+    ImageWarningTexsystem.Visible := true;
+    ImageWarningPath.Hint := 'Due to the conditions,' + #10 + 'the PATH can only be written to the texstudio.vbs.';
+    ImageWarningPath.Visible := true;
   end;
 end;
 
