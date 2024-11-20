@@ -60,10 +60,8 @@ After finishing the process (about 5-10 minutes) click the TeXstudio icon on the
 - TeXfireplace will be installed for the current user, no admin privileges are required.
 
 - You can set which Perl system you want to use (TLPerl or Strawberry Perl).
-If Perl has already been installed (not as part of a previous TeXfireplace installation), this option is not available.
 
-- The installation of Python is optional.
-If Python has already been installed (not as part of a previous TeXfireplace installation), this option is not available.
+- The installation of Python/latexminted is optional.
 
 - There are three options where to specify the PATHs to use TeXfireplace:
 
@@ -72,7 +70,6 @@ If Python has already been installed (not as part of a previous TeXfireplace ins
      If you choose this, the PATHs are made available using TeXstudio and are placed at the end of the `%PATH%` environment variable.
      However, in the terminal started from TeXstudio, the PATHs are placed at the beginning of the `%PATH%` environment variable.
      When using an external terminal, the `%PATH%` environment variable will not contain the PATHs to TeXfireplace.
-     If a TeX system other than TeXfireplace is already installed, this option cannot be selected.
 
      - **TeXstudio Startup file (texstudio.vbs)** <br>
      The texstudio.vbs is a startup file for TeXstudio which will put the PATHs at the beginning of the `%PATH%` environment variable before running.
@@ -81,7 +78,6 @@ If Python has already been installed (not as part of a previous TeXfireplace ins
 
      - **Registry for the current user** <br>
      If you choose this, the PATHs will be written in the registry (HKCU) at the beginning of the `%PATH%` environment variable.
-     If a TeX system other than TeXfireplace is already installed, this option cannot be selected.
 
 ## Updating older versions
 
