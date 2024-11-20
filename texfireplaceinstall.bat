@@ -7,8 +7,7 @@ pause
 exit /b
 )
 
-set "perlsystem=no"
-if "%1"=="tlperl" set "perlsystem=tlperl"
+set "perlsystem=tlperl"
 if "%1"=="strawberry" set "perlsystem=strawberry"
 
 set "python=no"
@@ -152,7 +151,7 @@ if not exist "%texdir%\texstudio\config\texstudio.ini" set "exit_code=1" & echo 
 if not "%writepathin%"=="txsini" goto endtxsini
 set "userpath="
 if "%python%"=="yes" set "userpath=;%texdir%\python;%texdir%\python\Scripts"
-if not "%perl%"=="no" set "userpath=;%texdir%\perl\bin%userpath%"
+set "userpath=;%texdir%\perl\bin%userpath%"
 set "userpath=%texdir%\texmfs\install\miktex\bin\x64%userpath%"
 set "userpath=%userpath:\=\\%"
 (
@@ -171,7 +170,7 @@ echo Set objFile = FSO.GetFile(Wscript.ScriptFullName^)
 echo TeXfireplaceFolder = FSO.GetParentFolderName(objFile^)
 echo strArgs = "cmd /c set path="
 echo strArgs = strArgs + TeXfireplaceFolder + "\texmfs\install\miktex\bin\x64;"
-if not "%perl%"=="no" echo strArgs = strArgs + TeXfireplaceFolder + "\perl\bin;"
+echo strArgs = strArgs + TeXfireplaceFolder + "\perl\bin;"
 if "%python%"=="yes" echo strArgs = strArgs + TeXfireplaceFolder + "\python;" + TeXfireplaceFolder + "\python\Scripts;"
 echo strArgs = strArgs + "%%path%% "
 echo strArgs = strArgs + "& call """ + TeXfireplaceFolder + "\texstudio\texstudio.exe"""
@@ -325,7 +324,7 @@ call set "userpath=%%userpath:%texdir%\perl\bin;=%%"
 call set "userpath=%%userpath:%texdir%\texmfs\install\miktex\bin\x64;=%%"
 :pathnextstep
 if "%python%"=="yes" set "userpath=%texdir%\python;%texdir%\python\Scripts;%userpath%"
-if not "%perl%"=="no" set "userpath=%texdir%\perl\bin;%userpath%"
+set "userpath=%texdir%\perl\bin;%userpath%"
 set "userpath=%texdir%\texmfs\install\miktex\bin\x64;%userpath%"
 setx path "%userpath%"
 :endpathtoreg
@@ -339,7 +338,7 @@ echo   - MikTeX (basic version + cm-super + latexmk^)
 echo   - TeXstudio
 if "%perlsystem%"=="strawberry" echo   - Strawberry Perl
 if "%perlsystem%"=="tlperl"     echo   - TLPerl
-if "%python%"=="yes"            echo   - Python
+if "%python%"=="yes"            echo   - Python/latexminted
 echo.
 if "%writepathin%"=="reg"       echo PATH is written in the registry
 if "%writepathin%"=="txsvbs"    echo PATH is written in the texstudio.vbs
