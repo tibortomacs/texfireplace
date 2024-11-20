@@ -194,8 +194,65 @@ echo oShell.Run strArgs, 0, false
 
 :: update.bat
 
-curl -s -f -L -o update.bat --output-dir "%texdir%" https://tibortomacs.github.io/texfireplace/update.bat
-if not exist "%texdir%\update.bat" set "exit_code=1" & echo ERROR: %texdir%\update.bat >> "%temp%\texfireplaceinstall.log" & goto endinstall
+(
+echo @echo off
+echo chcp 65001^> nul
+echo title Updating TeXfireplace
+echo set /p ^< nul = "Press any key to update TeXfireplace . . ."
+echo pause ^> nul
+echo :startupdate
+echo cls
+echo tasklist /fi "ImageName eq texstudio.exe" /fo csv 2^>nul ^| find /I "texstudio.exe"^>nul
+echo if not "%%errorlevel%%"=="0" goto update
+echo echo TeXstudio is running!
+echo set /p ^< nul = "To update, close TeXstudio and then press any key . . ."
+echo pause ^> nul
+echo goto startupdate
+echo :update
+echo echo ---------------
+echo echo Updating MiKTeX
+echo echo ---------------
+echo echo.
+echo "%%~dp0texmfs\install\miktex\bin\x64\miktex" packages update
+echo echo.
+echo echo -----------------------------
+echo echo Updating Pygments/latexminted
+echo echo -----------------------------
+echo echo.
+echo if exist "%%~dp0python\Scripts\pygmentize.exe" "%%~dp0python\python.exe" -m pip install --upgrade Pygments
+echo if exist "%%~dp0python\Scripts\latexminted.exe" "%%~dp0python\python.exe" -m pip install --upgrade latexminted
+echo echo.
+echo echo ------------------
+echo echo Updating TeXstudio
+echo echo ------------------
+echo echo.
+echo set "status=completed"
+echo curl -s -f -L -o texstudio.html https://www.texstudio.org/
+echo for /f "tokens=1 delims=" %%%%a in ('findstr "win-portable-qt6.zip" "%%~dp0texstudio.html"'^) do set "txsurl=%%%%a" ^& goto texstudionextstep
+echo :texstudionextstep
+echo del "%%~dp0texstudio.html"
+echo for /f tokens^^=4^^ delims^^=^^" %%%%a in ('echo "%%txsurl%%"') do set "txsurl=%%%%a"
+echo for /f "tokens=3 delims=-" %%%%a in ('echo "%%txsurl%%"'^) do set "txsver=%%%%a"
+echo set /p actualtxsver=^<"%%~dp0texstudio\version.inf"
+echo if [%%actualtxsver%%]==[%%txsver%%] echo There are currently no updates available. ^& goto endupdate
+echo curl -s -f -L -o texstudio.zip %%txsurl%%
+echo mkdir "%%~dp0texstudio-new"
+echo tar -xf "%%~dp0texstudio.zip" -C "%%~dp0texstudio-new"
+echo del "%%~dp0texstudio.zip"
+echo if not exist "%%~dp0texstudio-new\texstudio.exe" set "status=failed" ^& rmdir /s /q "%%~dp0texstudio-new" ^& goto endupdate
+echo xcopy /e /i "%%~dp0texstudio\config" "%%~dp0texstudio-new\config"^>nul
+echo echo %%txsver%%^> "%%~dp0texstudio-new\version.inf"
+echo rmdir /s /q "%%~dp0texstudio"
+echo rename "%%~dp0texstudio-new" texstudio
+echo echo Updated the TeXstudio to the latest version %%txsver%%.
+echo :endupdate
+echo echo.
+echo echo -------------------
+echo echo Updating %%status%%
+echo echo -------------------
+echo echo.
+echo pause
+) > "%texdir%\update.bat"
 
 :: uninstall.bat
 
