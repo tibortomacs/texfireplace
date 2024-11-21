@@ -19,16 +19,16 @@ type
     CheckBoxTexstudio: TCheckBox;
     CheckBoxMiktex: TCheckBox;
     CheckBoxPython: TCheckBox;
-    ImageWarningPerl: TImage;
-    ImageWarningPath: TImage;
-    ImageWarningTexsystem: TImage;
+    ImageInfoPerl: TImage;
+    ImageInfoPath: TImage;
+    ImageInfoTexsystem: TImage;
     ImageCheckPython: TImage;
     ImageCheckTexstudio: TImage;
     ImageCheckRemove: TImage;
     ImageCheckMiktex: TImage;
     ImageCheckPerl: TImage;
     ImageCheckCompletion: TImage;
-    ImageWarningPython: TImage;
+    ImageInfoPython: TImage;
     ImageWelcome: TImage;
     LabelCompletion: TLabel;
     LabelTexstudio: TLabel;
@@ -89,28 +89,28 @@ begin
   ButtonInstall.Left := ButtonNext.Left;
 
   if (FindDefaultExecutablePath('perl.exe') <> '') and (Pos('texfireplace',LowerCase(FindDefaultExecutablePath('perl.exe'))) = 0) then begin
-    ImageWarningPerl.Hint := 'Perl is already installed.' + #10 + StringReplace(FindDefaultExecutablePath('perl.exe'),'\perl.exe','',[rfReplaceAll]);
-    ImageWarningPerl.Visible := true;
+    ImageInfoPerl.Hint := 'Perl is already installed.' + #10 + StringReplace(FindDefaultExecutablePath('perl.exe'),'\perl.exe','',[rfReplaceAll]);
+    ImageInfoPerl.Visible := true;
   end;
 
   if (FindDefaultExecutablePath('python.exe') <> '') and (Pos('texfireplace',LowerCase(FindDefaultExecutablePath('python.exe'))) = 0) then begin
-    ImageWarningPython.Hint := 'Python is already installed.' + #10 + StringReplace(FindDefaultExecutablePath('python.exe'),'\python.exe','',[rfReplaceAll]);
-    ImageWarningPython.Visible := true;
+    ImageInfoPython.Hint := 'Python is already installed.' + #10 + StringReplace(FindDefaultExecutablePath('python.exe'),'\python.exe','',[rfReplaceAll]);
+    ImageInfoPython.Visible := true;
   end;
 
   if (FindDefaultExecutablePath('pdflatex.exe') <> '') and (Pos('texfireplace',LowerCase(FindDefaultExecutablePath('pdflatex.exe'))) = 0) then begin
-    ImageWarningTexsystem.Hint := 'TeX-system is already installed.' + #10 + StringReplace(FindDefaultExecutablePath('pdflatex.exe'),'\pdflatex.exe','',[rfReplaceAll]);
-    ImageWarningTexsystem.Visible := true;
+    ImageInfoTexsystem.Hint := 'TeX-system is already installed.' + #10 + StringReplace(FindDefaultExecutablePath('pdflatex.exe'),'\pdflatex.exe','',[rfReplaceAll]);
+    ImageInfoTexsystem.Visible := true;
   end;
 
-  if ImageWarningPerl.Visible or ImageWarningPython.Visible or ImageWarningTexsystem.Visible then begin
+  if ImageInfoPerl.Visible or ImageInfoPython.Visible or ImageInfoTexsystem.Visible then begin
     RadioButtonTxsini.Checked := false;
     RadioButtonTxsvbs.Checked := true;
     RadioButtonReg.Checked := false;
     RadioButtonTxsini.Enabled := false;
     RadioButtonReg.Enabled := false;
-    ImageWarningPath.Hint := 'Due to the conditions,' + #10 + 'the PATH can only be written to the texstudio.vbs.';
-    ImageWarningPath.Visible := true;
+    ImageInfoPath.Hint := 'Due to the conditions,' + #10 + 'the PATH can only be written to the texstudio.vbs.';
+    ImageInfoPath.Visible := true;
   end;
 end;
 
@@ -190,24 +190,24 @@ begin
   if (not CheckBoxPython.Checked) and
      (MessageDlg('Are you sure you will never use the minted package?',mtConfirmation,[mbYes,mbNo],0) = mrNo) then CheckBoxPython.Checked := true;
 
-  if (ImageWarningPerl.Hint = '') and (ImageWarningTexsystem.Hint = '') then begin
+  if (ImageInfoPerl.Hint = '') and (ImageInfoTexsystem.Hint = '') then begin
     RadioButtonTxsini.Checked := false;
     RadioButtonTxsvbs.Checked := false;
     RadioButtonReg.Checked := true;
     RadioButtonTxsini.Enabled := true;
     RadioButtonReg.Enabled := true;
-    ImageWarningPath.Hint := '';
-    ImageWarningPath.Visible := false;
+    ImageInfoPath.Hint := '';
+    ImageInfoPath.Visible := false;
   end;
 
-  if (ImageWarningPerl.Hint <> '') or (ImageWarningTexsystem.Hint <> '') or ((CheckBoxPython.Checked) and (ImageWarningPython.Hint <> '')) then begin
+  if (ImageInfoPerl.Hint <> '') or (ImageInfoTexsystem.Hint <> '') or ((CheckBoxPython.Checked) and (ImageInfoPython.Hint <> '')) then begin
     RadioButtonTxsini.Checked := false;
     RadioButtonTxsvbs.Checked := true;
     RadioButtonReg.Checked := false;
     RadioButtonTxsini.Enabled := false;
     RadioButtonReg.Enabled := false;
-    ImageWarningPath.Hint := 'Due to the conditions,' + #10 + 'the PATH can only be written to the texstudio.vbs.';
-    ImageWarningPath.Visible := true;
+    ImageInfoPath.Hint := 'Due to the conditions,' + #10 + 'the PATH can only be written to the texstudio.vbs.';
+    ImageInfoPath.Visible := true;
   end;
 end;
 
