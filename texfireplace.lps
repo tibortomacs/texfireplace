@@ -12,7 +12,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="63"/>
+        <UsageCount Value="64"/>
       </Unit>
       <Unit>
         <Filename Value="install.pas"/>
@@ -21,22 +21,14 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="209"/>
-        <CursorPos X="3" Y="221"/>
-        <UsageCount Value="63"/>
+        <TopLine Value="230"/>
+        <CursorPos X="3" Y="246"/>
+        <UsageCount Value="64"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
     </Units>
     <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="install.pas"/>
-        <Caret Line="225" Column="7" TopLine="206"/>
-      </Position>
-      <Position>
-        <Filename Value="install.pas"/>
-        <Caret Line="231" Column="46" TopLine="207"/>
-      </Position>
       <Position>
         <Filename Value="install.pas"/>
         <Caret Line="155" Column="18" TopLine="138"/>
@@ -148,6 +140,14 @@
       <Position>
         <Filename Value="install.pas"/>
         <Caret Line="243" Column="3" TopLine="236"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="221" Column="3" TopLine="209"/>
+      </Position>
+      <Position>
+        <Filename Value="install.pas"/>
+        <Caret Line="353" Column="42" TopLine="339"/>
       </Position>
     </JumpHistory>
     <RunParams>

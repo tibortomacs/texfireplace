@@ -40,6 +40,7 @@ type
     LabelInstall: TLabel;
     LabelSetup: TLabel;
     LabelWelcome: TLabel;
+    MemoTexstudioIni: TMemo;
     MemoInstallBat: TMemo;
     MemoWelcome: TMemo;
     NotebookInstall: TNotebook;
@@ -242,6 +243,7 @@ begin
   if RadioButtonReg.Checked then path := 'reg';
 
   MemoInstallBat.Lines.SaveToFile(GetTempDir + 'texfireplaceinstall.bat');
+  MemoTexstudioIni.Lines.SaveToFile(GetTempDir + 'texstudio.ini');
 
   if not FileExists(GetTempDir + 'texfireplaceinstall.bat') then begin
     assignfile(f,GetTempDir + 'texfireplaceinstall.bat');
@@ -362,6 +364,7 @@ begin
   end;
 
   DeleteFile(GetTempDir + 'texfireplaceinstall.bat');
+  if FileExists(GetTempDir + 'texstudio.ini') then DeleteFile(GetTempDir + 'texstudio.ini');
   ButtonCancel.Enabled := true;
 end;
 
