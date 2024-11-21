@@ -17,7 +17,7 @@ object FormInstall: TFormInstall
     Height = 360
     Top = 0
     Width = 568
-    PageIndex = 0
+    PageIndex = 2
     TabOrder = 4
     object PageWelcome: TPage
       Color = clWhite
@@ -1386,8 +1386,8 @@ object FormInstall: TFormInstall
         Left = 32
         Height = 15
         Top = 165
-        Width = 43
-        Caption = 'MiKTeX'
+        Width = 73
+        Caption = 'MiKTeX basic'
         Font.CharSet = EASTEUROPE_CHARSET
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
@@ -1414,8 +1414,8 @@ object FormInstall: TFormInstall
         Left = 32
         Height = 15
         Top = 215
-        Width = 39
-        Caption = 'Python'
+        Width = 112
+        Caption = 'Python/latexminted'
         Font.CharSet = EASTEUROPE_CHARSET
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
@@ -1972,7 +1972,12 @@ object FormInstall: TFormInstall
       ':: readme.txt'
       ''
       '('
-      'echo TeXfireplace components:'
+      'echo TeXfireplace - An easy-to-install compact framework for using LaTeX on Windows.'
+      'echo.'
+      'echo Path: %texdir% '
+      'echo Date of installation: %date% (%time%^)'
+      'echo.'
+      'echo Installed components'
       'echo.'
       'echo   - MikTeX (basic version + cm-super + latexmk^)'
       'echo   - TeXstudio'
@@ -1980,13 +1985,33 @@ object FormInstall: TFormInstall
       'if "%perlsystem%"=="tlperl"     echo   - TLPerl'
       'if "%python%"=="yes"            echo   - Python/latexminted'
       'echo.'
-      'if "%writepathin%"=="reg"       echo PATH is written in the registry'
-      'if "%writepathin%"=="txsvbs"    echo PATH is written in the texstudio.vbs'
-      'if "%writepathin%"=="txsini"    echo PATH is written in the texstudio.ini'
-      'echo.'
-      'echo Path: %texdir% '
-      'echo Date of installation: %date% (%time%^)'
+      'if "%writepathin%"=="reg" echo PATH is written in the registry (HKCU^) at the beginning of the %%PATH%% environment variable.'
       ') > "%texdir%\readme.txt"'
+      ''
+      'if "%writepathin%"=="txsvbs" ('
+      'echo PATH is written in the texstudio.vbs.'
+      'echo The texstudio.vbs is the startup file for TeXstudio which puts the PATH at the beginning of the %%PATH%% environment variable before running.'
+      'echo Therefore, the TeXfireplace PATHs are made available using TeXstudio.'
+      'echo When using an external terminal, the %%PATH%% environment variable does not contain the PATHs to TeXfireplace.'
+      ') >> "%texdir%\readme.txt"'
+      ''
+      'if "%writepathin%"=="txsini" ('
+      'echo PATH is written in the texstudio.ini.'
+      'echo The texstudio.ini file contains the settings for TeXstudio.'
+      'echo The TeXfireplace PATHs are made available using TeXstudio and are placed at the end of the %%PATH%% environment variable.'
+      'echo However, in the terminal started from TeXstudio, the TeXfireplace PATHs are placed at the beginning of the %%PATH%% environment variable.'
+      'echo When using an external terminal, the %%PATH%% environment variable does not contain the PATHs to TeXfireplace.'
+      ') >> "%texdir%\readme.txt"'
+      ''
+      '('
+      'echo License'
+      'echo.'
+      'echo The TeXfireplace is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.'
+      'echo The TeXfireplace icon is provided by Recognize (recognizeapp.com^) as Creative Commons Attribution 4.0 International License.'
+      'echo The TeXfireplace installer is a batch script that can be run from a graphical user interface.'
+      'echo The GUI is written in Free Pascal using Lazarus.'
+      'echo It is a free and open source program maintained by Tibor Tómács.'
+      ') >> "%texdir%\readme.txt"'
       ''
       ':: Shortcuts'
       ''
