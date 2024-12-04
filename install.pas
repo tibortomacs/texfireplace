@@ -19,6 +19,7 @@ type
     CheckBoxTexstudio: TCheckBox;
     CheckBoxMiktex: TCheckBox;
     CheckBoxPython: TCheckBox;
+    ImageArrow: TImage;
     ImageInfoPerl: TImage;
     ImageInfoPath: TImage;
     ImageInfoTexsystem: TImage;
@@ -287,6 +288,8 @@ begin
   LabelCompletion.Visible := true;
   ImageCheckCompletion.Top := topcoord;
 
+  ProgressBarInstall.Visible := true;
+
   ProcessInstall := TProcess.Create(nil);
   try
     ProcessInstall.InheritHandles := false;
@@ -305,44 +308,44 @@ begin
       if FileExists(GetTempDir + 'texfireplaceinstall-remove.txt') then begin
         DeleteFile(GetTempDir + 'texfireplaceinstall-remove.txt');
         topcoord := topcoord + diff;
-        ProgressBarInstall.Top := topcoord;
-        ProgressBarInstall.Visible := true;
+        ImageArrow.Top := topcoord;
+        ImageArrow.Visible := true;
       end;
 
       if FileExists(GetTempDir + 'texfireplaceinstall-miktex.txt') then begin
         DeleteFile(GetTempDir + 'texfireplaceinstall-miktex.txt');
         if LabelRemove.Visible then ImageCheckRemove.Visible := true;
         topcoord := topcoord + diff;
-        ProgressBarInstall.Top := topcoord;
-        ProgressBarInstall.Visible := true;
+        ImageArrow.Top := topcoord;
+        ImageArrow.Visible := true;
       end;
 
       if FileExists(GetTempDir + 'texfireplaceinstall-perl.txt') then begin
         DeleteFile(GetTempDir + 'texfireplaceinstall-perl.txt');
         ImageCheckMiktex.Visible := true;
         topcoord := topcoord + diff;
-        ProgressBarInstall.Top := topcoord;
+        ImageArrow.Top := topcoord;
       end;
 
       if FileExists(GetTempDir + 'texfireplaceinstall-python.txt') then begin
         DeleteFile(GetTempDir + 'texfireplaceinstall-python.txt');
         ImageCheckPerl.Visible := true;
         topcoord := topcoord + diff;
-        ProgressBarInstall.Top := topcoord;
+        ImageArrow.Top := topcoord;
       end;
 
       if FileExists(GetTempDir + 'texfireplaceinstall-texstudio.txt') then begin
         DeleteFile(GetTempDir + 'texfireplaceinstall-texstudio.txt');
         if LabelPython.Visible then ImageCheckPython.Visible := true else ImageCheckPerl.Visible := true;
         topcoord := topcoord + diff;
-        ProgressBarInstall.Top := topcoord;
+        ImageArrow.Top := topcoord;
       end;
 
       if FileExists(GetTempDir + 'texfireplaceinstall-completion.txt') then begin
         DeleteFile(GetTempDir + 'texfireplaceinstall-completion.txt');
         ImageCheckTexstudio.Visible := true;
         topcoord := topcoord + diff;
-        ProgressBarInstall.Top := topcoord;
+        ImageArrow.Top := topcoord;
       end;
 
       sleep(50);
@@ -351,6 +354,7 @@ begin
 
     ProcessInstall.WaitOnExit;
     ProgressBarInstall.Visible := false;
+    ImageArrow.Visible := false;
     LabelClick.Visible := false;
 
     if ProcessInstall.ExitStatus = 1 then begin

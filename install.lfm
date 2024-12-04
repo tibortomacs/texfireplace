@@ -17,7 +17,7 @@ object FormInstall: TFormInstall
     Height = 360
     Top = 0
     Width = 568
-    PageIndex = 0
+    PageIndex = 2
     TabOrder = 4
     object PageWelcome: TPage
       Color = clWhite
@@ -6691,102 +6691,103 @@ object FormInstall: TFormInstall
         ParentColor = False
       end
       object LabelRemove: TLabel
-        Left = 32
-        Height = 15
+        Left = 54
+        Height = 17
         Top = 140
-        Width = 140
+        Width = 145
         Caption = 'Remove old TeXfireplace'
         Font.CharSet = EASTEUROPE_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
-        Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
         Visible = False
       end
       object LabelMiktex: TLabel
-        Left = 32
-        Height = 15
+        Left = 54
+        Height = 17
         Top = 165
-        Width = 73
+        Width = 78
         Caption = 'MiKTeX basic'
         Font.CharSet = EASTEUROPE_CHARSET
+        Font.Height = -13
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
-        Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
         Visible = False
       end
       object LabelPerl: TLabel
-        Left = 32
-        Height = 15
+        Left = 54
+        Height = 17
         Top = 190
         Width = 35
         Caption = 'TLPerl'
         Font.CharSet = EASTEUROPE_CHARSET
+        Font.Height = -13
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
-        Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
         Visible = False
       end
       object LabelPython: TLabel
-        Left = 32
-        Height = 15
+        Left = 54
+        Height = 17
         Top = 215
-        Width = 112
+        Width = 111
         Caption = 'Python/latexminted'
         Font.CharSet = EASTEUROPE_CHARSET
+        Font.Height = -13
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
-        Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
         Visible = False
       end
       object LabelTexstudio: TLabel
-        Left = 32
-        Height = 15
+        Left = 54
+        Height = 17
         Top = 240
-        Width = 55
+        Width = 57
         Caption = 'TeXstudio'
         Font.CharSet = EASTEUROPE_CHARSET
+        Font.Height = -13
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
-        Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
         Visible = False
       end
       object LabelCompletion: TLabel
-        Left = 32
-        Height = 15
+        Left = 54
+        Height = 17
         Top = 265
-        Width = 142
+        Width = 149
         Caption = 'Completion of installation'
         Font.CharSet = EASTEUROPE_CHARSET
+        Font.Height = -13
         Font.Pitch = fpVariable
         Font.Quality = fqDraft
-        Font.Style = [fsBold]
         ParentColor = False
         ParentFont = False
         Visible = False
       end
       object ProgressBarInstall: TProgressBar
-        Left = 210
-        Height = 13
-        Top = 140
-        Width = 170
+        Left = 0
+        Height = 20
+        Top = 340
+        Width = 568
         Style = pbstMarquee
         TabOrder = 0
         Visible = False
       end
       object ImageCheckRemove: TImage
-        Left = 187
+        Left = 32
         Height = 16
-        Top = 139
+        Top = 140
         Width = 16
         Picture.Data = {
           1754506F727461626C654E6574776F726B477261706869636901000089504E47
@@ -6806,9 +6807,9 @@ object FormInstall: TFormInstall
         Visible = False
       end
       object ImageCheckMiktex: TImage
-        Left = 187
+        Left = 32
         Height = 16
-        Top = 164
+        Top = 165
         Width = 16
         Picture.Data = {
           1754506F727461626C654E6574776F726B477261706869636901000089504E47
@@ -6828,9 +6829,9 @@ object FormInstall: TFormInstall
         Visible = False
       end
       object ImageCheckPerl: TImage
-        Left = 187
+        Left = 32
         Height = 16
-        Top = 189
+        Top = 190
         Width = 16
         Picture.Data = {
           1754506F727461626C654E6574776F726B477261706869636901000089504E47
@@ -6850,9 +6851,9 @@ object FormInstall: TFormInstall
         Visible = False
       end
       object ImageCheckPython: TImage
-        Left = 187
+        Left = 32
         Height = 16
-        Top = 214
+        Top = 215
         Width = 16
         Picture.Data = {
           1754506F727461626C654E6574776F726B477261706869636901000089504E47
@@ -6872,9 +6873,9 @@ object FormInstall: TFormInstall
         Visible = False
       end
       object ImageCheckTexstudio: TImage
-        Left = 187
+        Left = 32
         Height = 16
-        Top = 239
+        Top = 240
         Width = 16
         Picture.Data = {
           1754506F727461626C654E6574776F726B477261706869636901000089504E47
@@ -6894,9 +6895,9 @@ object FormInstall: TFormInstall
         Visible = False
       end
       object ImageCheckCompletion: TImage
-        Left = 187
+        Left = 32
         Height = 16
-        Top = 264
+        Top = 265
         Width = 16
         Picture.Data = {
           1754506F727461626C654E6574776F726B477261706869636901000089504E47
@@ -6912,6 +6913,26 @@ object FormInstall: TFormInstall
           90DFF412A84211F24B1C475F23AEFBFDE06F8168DB1DFB6734FBC1740FD235EE
           F1AA3D304F6504BA2CC9D2C938B6A5ED13A9EE4E27657797370000000049454E
           44AE426082
+        }
+        Visible = False
+      end
+      object ImageArrow: TImage
+        Left = 32
+        Height = 16
+        Top = 110
+        Width = 16
+        AutoSize = True
+        Picture.Data = {
+          1754506F727461626C654E6574776F726B477261706869631401000089504E47
+          0D0A1A0A0000000D49484452000000100000001008060000001FF3FF61000000
+          097048597300000EC400000EC401952B0E1B000000C649444154388D9DD3216B
+          42511880E10795E52186253119164CE665A371418CC3300C86FD0D836171BFC2
+          20FB010683D16416B7B02006113C06EF4044BDF79E170E9CF2BEDF818F5374A2
+          83037E4452C10A9FC93D8A0E02FED0472926324922010BB4F2066AD89E4502C6
+          A8E7890C2E02013B0CF1982550C2EC4A24608D3714D2220DEC6F4402E67871A7
+          74484E14054C6F4CFE454FCA8ADFAF887B8C504E9B5EC5E642FEC673D6E78FCF
+          C425DA5945784DC40D3EF090472E3B7DA62F3CE511FFE9A219231E0124AA41BA
+          3E2B10A30000000049454E44AE426082
         }
         Visible = False
       end
