@@ -21,6 +21,8 @@ However, it’s most convenient to have an editor that is designed to work with 
 
 ## What is TeXfireplace?
 
+<p align="center"><img src="texfireplace-puzzle.svg" /></p>
+
 The _TeXfireplace_ is an easy-to-install compact framework for using LaTeX on Windows.
 The installer downloads and installs the following programs: 
 
