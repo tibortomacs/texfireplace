@@ -1,8 +1,8 @@
 [Download]: https://tibortomacs.github.io/texfireplace/texfireplace.exe
 [Webpage]: https://tibortomacs.github.io/texfireplace/
 
-[<img src="texfireplace.svg" height="75">][Webpage]
-[<img src="download.svg" height="75" align="right">][Download]
+[<img src="texfireplace.svg" height="75"/>][Webpage]
+[<img src="download.svg" height="75" align="right"/>][Download]
 
 # An easy-to-install compact framework for using LaTeX on Windows
 
@@ -20,8 +20,6 @@ LaTeX source codes are simply plain text, so they can be edited with any text ed
 However, it’s most convenient to have an editor that is designed to work with LaTeX, as they provide features like one-click compilation of your files, built-in PDF viewers, and syntax highlighting.
 
 ## What is TeXfireplace?
-
-<p align="center"><img src="texfireplace-puzzle.svg" /></p>
 
 The _TeXfireplace_ is an easy-to-install compact framework for using LaTeX on Windows.
 The installer downloads and installs the following programs: 
@@ -102,3 +100,5 @@ The TeXfireplace icon is provided by Recognize (recognizeapp.com) as Creative Co
 It is a free and open source program maintained by Tibor Tómács.*
 
 ---
+
+<p align="center"><img src="texfireplace-puzzle.svg" height="60"/></p>
