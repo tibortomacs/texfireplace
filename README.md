@@ -57,7 +57,7 @@ for `minted` ([https://ctan.org/pkg/minted](https://ctan.org/pkg/minted)) LaTeX 
 Download the **[TeXfireplace installer][download]** (about 4MB) and run it! Internet connection is required for installation.
 After finishing the process (about 5-10 minutes) click the TeXstudio icon on the desktop (or in the start menu) and happy LaTeXing!
 
-[<img src="download3.svg" height="30"/>][Download]
+[<img src="download2.svg" height="30"/>][Download]
 
 - TeXfireplace will be installed for the current user, no admin privileges are required.
 
