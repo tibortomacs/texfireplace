@@ -7472,7 +7472,7 @@ object FormInstall: TFormInstall
       'Tools\Automatic%20Rerun%20Commands='
       'Tools\Commands\view-dvi=yap.exe \"?am.dvi\"'
       'Tools\Commands\compile=txs:///latexmk'
-      'Tools\Commands\latexmk="latexmk -gg -pdf -silent -synctex=1 -shell-escape %"'
+      'Tools\Commands\latexmk="latexmk -gg -pdf -silent -verbose -synctex=1 -shell-escape %"'
       'Tools\Commands\quick=txs:///compile | txs:///view | txs:///view-log'
       'Tools\Show%20Stdout=2'
       'Update\AutoCheck=false'
