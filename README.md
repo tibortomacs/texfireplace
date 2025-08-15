@@ -106,6 +106,3 @@ It is a free and open source program maintained by Tibor Tómács.*
 ---
 
 <p align="center"><img src="texfireplace-puzzle.svg" height="60"/></p>
-
-
-
