@@ -59,6 +59,8 @@ After finishing the process (about 5-10 minutes) click the TeXstudio icon on the
 
 [<img src="download2.svg" height="30"/>][Download]
 
+- **SHA-256:** `3cb02480b1b6e23cb720d9ca3ead228c2a75fcb50b44f0e8921ef2ba38dad470`
+
 - TeXfireplace will be installed for the current user, no admin privileges are required.
 
 - You can set which Perl system you want to use (TLPerl or Strawberry Perl).
@@ -104,3 +106,6 @@ It is a free and open source program maintained by Tibor Tómács.*
 ---
 
 <p align="center"><img src="texfireplace-puzzle.svg" height="60"/></p>
+
+
+
