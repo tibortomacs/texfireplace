@@ -59,7 +59,7 @@ After finishing the process (about 5-10 minutes) click the TeXstudio icon on the
 
 [<img src="download2.svg" height="30"/>][Download]
 
-- **SHA-256:** `d7bd443dbb7fe89c4f28bbc7bfb4fb0587402f83e865ed944f4e4f250300ddf3`
+- **SHA-256:** `126e47e5144d83eaa421956b67f29a2b1b3633fa1f309ac4efb3e63c7713dd95`
 
 - TeXfireplace will be installed for the current user, no admin privileges are required.
 
