@@ -7013,7 +7013,7 @@ object FormInstall: TFormInstall
       'mkdir "%tempdir%"'
       'chdir /d "%tempdir%"'
       ''
-      'del "%temp%\texfireplace*.*"'
+      'del "%temp%\texfireplaceinstall-*.txt"'
       ''
       'echo texdir=%texdir% > "%temp%\texfireplaceinstall.log"'
       'echo tempdir=%tempdir% >> "%temp%\texfireplaceinstall.log"'
