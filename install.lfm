@@ -1850,7 +1850,7 @@ object FormInstall: TFormInstall
       ':endinstall'
       'chdir /d "%localappdata%"'
       'rmdir /s /q "%tempdir%"'
-      'if "%exit_code%"=="0" del "%temp%\texfireplaceinstall.log"'
+      'if "%exit_code%"=="0" move /y "%temp%\texfireplaceinstall.log" "%texdir%\texfireplaceinstall.log"'
       'if "%exit_code%"=="1" rmdir /s /q "%texdir%"'
       'endlocal & exit /b %exit_code%'
     )
