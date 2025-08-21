@@ -17,7 +17,7 @@ object FormInstall: TFormInstall
     Height = 360
     Top = 0
     Width = 568
-    PageIndex = 0
+    PageIndex = 2
     TabOrder = 4
     object PageWelcome: TPage
       Color = clWhite
@@ -900,7 +900,9 @@ object FormInstall: TFormInstall
           6DB42CFBA5615ED2F2B063CB3F0D9B3AA05176090E0000000049454E44AE4260
           82
         }
+        Proportional = True
         ShowHint = True
+        Stretch = True
         Visible = False
       end
       object ImageInfoPython: TImage
@@ -939,7 +941,9 @@ object FormInstall: TFormInstall
           6DB42CFBA5615ED2F2B063CB3F0D9B3AA05176090E0000000049454E44AE4260
           82
         }
+        Proportional = True
         ShowHint = True
+        Stretch = True
         Visible = False
       end
       object ImageInfoPerl: TImage
@@ -978,7 +982,9 @@ object FormInstall: TFormInstall
           6DB42CFBA5615ED2F2B063CB3F0D9B3AA05176090E0000000049454E44AE4260
           82
         }
+        Proportional = True
         ShowHint = True
+        Stretch = True
         Visible = False
       end
       object ImageInfoPath: TImage
@@ -1017,7 +1023,9 @@ object FormInstall: TFormInstall
           6DB42CFBA5615ED2F2B063CB3F0D9B3AA05176090E0000000049454E44AE4260
           82
         }
+        Proportional = True
         ShowHint = True
+        Stretch = True
         Visible = False
       end
     end
@@ -1159,6 +1167,8 @@ object FormInstall: TFormInstall
           F1AA3D304F6504BA2CC9D2C938B6A5ED13A9EE4E27657797370000000049454E
           44AE426082
         }
+        Proportional = True
+        Stretch = True
         Visible = False
       end
       object ImageCheckMiktex: TImage
@@ -1181,6 +1191,8 @@ object FormInstall: TFormInstall
           F1AA3D304F6504BA2CC9D2C938B6A5ED13A9EE4E27657797370000000049454E
           44AE426082
         }
+        Proportional = True
+        Stretch = True
         Visible = False
       end
       object ImageCheckPerl: TImage
@@ -1203,6 +1215,8 @@ object FormInstall: TFormInstall
           F1AA3D304F6504BA2CC9D2C938B6A5ED13A9EE4E27657797370000000049454E
           44AE426082
         }
+        Proportional = True
+        Stretch = True
         Visible = False
       end
       object ImageCheckPython: TImage
@@ -1225,6 +1239,8 @@ object FormInstall: TFormInstall
           F1AA3D304F6504BA2CC9D2C938B6A5ED13A9EE4E27657797370000000049454E
           44AE426082
         }
+        Proportional = True
+        Stretch = True
         Visible = False
       end
       object ImageCheckTexstudio: TImage
@@ -1247,6 +1263,8 @@ object FormInstall: TFormInstall
           F1AA3D304F6504BA2CC9D2C938B6A5ED13A9EE4E27657797370000000049454E
           44AE426082
         }
+        Proportional = True
+        Stretch = True
         Visible = False
       end
       object ImageCheckCompletion: TImage
@@ -1269,6 +1287,7 @@ object FormInstall: TFormInstall
           F1AA3D304F6504BA2CC9D2C938B6A5ED13A9EE4E27657797370000000049454E
           44AE426082
         }
+        Stretch = True
         Visible = False
       end
       object ImageArrow: TImage
@@ -1289,6 +1308,8 @@ object FormInstall: TFormInstall
           C425DA5945784DC40D3EF090472E3B7DA62F3CE511FFE9A219231E0124AA41BA
           3E2B10A30000000049454E44AE426082
         }
+        Proportional = True
+        Stretch = True
         Visible = False
       end
     end
