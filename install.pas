@@ -85,22 +85,27 @@ implementation
 // -----------------------------------------------------
 
 procedure TFormInstall.FormActivate(Sender: TObject);
+var
+  progpath: string;
 begin
   FormInstall.ActiveControl := ButtonNext;
   ButtonInstall.Left := ButtonNext.Left;
 
-  if (FindDefaultExecutablePath('perl.exe') <> '') and (Pos('texfireplace',LowerCase(FindDefaultExecutablePath('perl.exe'))) = 0) then begin
-    ImageInfoPerl.Hint := 'Perl is already installed.' + #10 + StringReplace(FindDefaultExecutablePath('perl.exe'),'\perl.exe','',[rfReplaceAll]);
+  progpath := FindDefaultExecutablePath('perl.exe');
+  if (progpath <> '') and (Pos('texfireplace',LowerCase(progpath)) = 0) and (FileSize(progpath) <> 0) then begin
+    ImageInfoPerl.Hint := 'Perl is already installed.' + #10 + StringReplace(progpath,'\perl.exe','',[rfReplaceAll]);
     ImageInfoPerl.Visible := true;
   end;
 
-  if (FindDefaultExecutablePath('python.exe') <> '') and (Pos('texfireplace',LowerCase(FindDefaultExecutablePath('python.exe'))) = 0) then begin
-    ImageInfoPython.Hint := 'Python is already installed.' + #10 + StringReplace(FindDefaultExecutablePath('python.exe'),'\python.exe','',[rfReplaceAll]);
+  progpath := FindDefaultExecutablePath('python.exe');
+  if (progpath <> '') and (Pos('texfireplace',LowerCase(progpath)) = 0) and (FileSize(progpath) <> 0) then begin
+    ImageInfoPython.Hint := 'Python is already installed.' + #10 + StringReplace(progpath,'\python.exe','',[rfReplaceAll]);
     ImageInfoPython.Visible := true;
   end;
 
-  if (FindDefaultExecutablePath('pdflatex.exe') <> '') and (Pos('texfireplace',LowerCase(FindDefaultExecutablePath('pdflatex.exe'))) = 0) then begin
-    ImageInfoTexsystem.Hint := 'TeX-system is already installed.' + #10 + StringReplace(FindDefaultExecutablePath('pdflatex.exe'),'\pdflatex.exe','',[rfReplaceAll]);
+  progpath := FindDefaultExecutablePath('pdflatex.exe');
+  if (progpath <> '') and (Pos('texfireplace',LowerCase(progpath)) = 0) and (FileSize(progpath) <> 0) then begin
+    ImageInfoTexsystem.Hint := 'TeX-system is already installed.' + #10 + StringReplace(progpath,'\pdflatex.exe','',[rfReplaceAll]);
     ImageInfoTexsystem.Visible := true;
   end;
 
