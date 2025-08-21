@@ -1725,7 +1725,7 @@ object FormInstall: TFormInstall
       'echo set "userpath=%%userpath:%texdir%\python;=%%"'
       'echo set "userpath=%%userpath:%texdir%\perl\bin;=%%"'
       'echo set "userpath=%%userpath:%texdir%\texmfs\install\miktex\bin\x64;=%%"'
-      'echo powershell -NoProfile -Command "[Environment]::SetEnvironmentVariable(''PATH'', ''%%userpath%%'', ''User''^)"'
+      'echo powershell -NoProfile -Command "[Environment]::SetEnvironmentVariable(''PATH'', ''%%userpath%%'', ''User'')"'
       'echo :nextstep'
       ') >> "%texdir%\uninstall.bat"'
       ':uninstallnextstep'
