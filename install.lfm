@@ -1907,7 +1907,6 @@ object FormInstall: TFormInstall
       'IniMode=true'
       ''
       '[texmaker]'
-      'CentralToolBar=main/edit/goto/goback, main/edit/goto/goforward, separator, main/latex/fontstyles/emph, main/latex/fontstyles/textit, main/latex/fontstyles/textbf, main/latex/fontstyles/underline, separator, main/latex/environment/flushleft, main/latex/environment/center, main/latex/environment/flushright, separator, main/latex/verticalSpacing/newline, separator, main/math/mathmode, main/math/subscript, main/math/superscript, main/math/frac, main/math/sqrt'
       'CleanDialog\Extensions="log,aux,dvi,lof,lot,bit,idx,glo,bbl,ilg,toc,ind,out,blg,fdb_latexmk,fls,synctex.gz,synctex,nav,snm,vrb,lol,bcf,run.xml,idx,ilg,ind"'
       'CleanDialog\Scope=3'
       'Editor\Auto%20Indent=false'
@@ -1918,7 +1917,6 @@ object FormInstall: TFormInstall
       'Editor\Completion%20EOW%20Completes=false'
       'Editor\Completion%20Enable%20Tooltip%20Help=false'
       'Editor\Completion%20Enable%20Tooltip%20Preview=false'
-      'Editor\Completion%20Files=amsfonts.cwl, amsmath.cwl, amssymb.cwl, amsthm.cwl, babel.cwl, caption.cwl, class-beamer.cwl, class-book.cwl, class-moderncv.cwl, color.cwl, colortbl.cwl, csquotes.cwl, fancybox.cwl, fancyhdr.cwl, fancyvrb.cwl, float.cwl, geometry.cwl, graphicx.cwl, hyperref.cwl, latex-dev.cwl, latex-document.cwl, listings.cwl, tex.cwl, tikz.cwl, url.cwl'
       'Editor\Completion%20Prefered%20Tab=3'
       'Editor\Font%20Family=Courier'
       'Editor\Font%20Size=12'
@@ -1960,12 +1958,6 @@ object FormInstall: TFormInstall
       'Update\AutoCheck=false'
       'X11\Font%20Size=10'
       'X11\Style='
-      'keysetting\1\id=pdf/view/external~0'
-      'keysetting\1\key='
-      'keysetting\size=0'
-      'Quick\Encoding=NONE'
-      'Quick\AMS=false'
-      'Quick\graphicx=false'
     )
     TabOrder = 6
     Visible = False
