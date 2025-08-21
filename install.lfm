@@ -699,6 +699,8 @@ object FormInstall: TFormInstall
           F569DB1EA9D50ED5AA876BD5F17A2B5E00FBFF01B872110074F209FC00000000
           49454E44AE426082
         }
+        Proportional = True
+        Stretch = True
       end
       object LabelWelcome: TLabel
         Left = 213
