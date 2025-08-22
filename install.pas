@@ -89,6 +89,15 @@ procedure TFormInstall.FormActivate(Sender: TObject);
 var
   progpath: string;
 begin
+  ImageInfoPython.Picture.Assign(ImageInfoTexsystem.Picture);
+  ImageInfoPerl.Picture.Assign(ImageInfoTexsystem.Picture);
+  ImageInfoPath.Picture.Assign(ImageInfoTexsystem.Picture);
+  ImageCheckMiktex.Picture.Assign(ImageCheckRemove.Picture);
+  ImageCheckPerl.Picture.Assign(ImageCheckRemove.Picture);
+  ImageCheckPython.Picture.Assign(ImageCheckRemove.Picture);
+  ImageCheckTexstudio.Picture.Assign(ImageCheckRemove.Picture);
+  ImageCheckCompletion.Picture.Assign(ImageCheckRemove.Picture);
+
   FormInstall.ActiveControl := ButtonNext;
   ButtonInstall.Left := ButtonNext.Left;
 
