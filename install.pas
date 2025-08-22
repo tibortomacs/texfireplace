@@ -56,6 +56,7 @@ type
     RadioButtonTlperl: TRadioButton;
     RadioGroupPath: TRadioGroup;
     RadioGroupPerl: TRadioGroup;
+    Background: TShape;
     procedure ButtonBackClick(Sender: TObject);
     procedure ButtonCancelClick(Sender: TObject);
     procedure ButtonInstallClick(Sender: TObject);
