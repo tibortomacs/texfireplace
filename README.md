@@ -2,27 +2,10 @@
 [Webpage]: https://tibortomacs.github.io/texfireplace/
 
 [<img src="texfireplace.svg" height="75"/>][Webpage]
-[<img src="download.svg" height="75" align="right"/>][Download]
 
 # An easy-to-install compact framework for using LaTeX on Windows
 
-## What is LaTeX?
-
-LaTeX (pronounced either “lah-tech” or “lay-tech”) is a document preparation system designed to produce high-quality typeset output.
-Unlike common word processors such as Microsoft Word or LibreOffice Writer, LaTeX does not provide WYSIWYG (“What You See Is What You Get”). 
-With LaTeX one takes plain text and enriches it with markup. 
-This markup tells LaTeX about the logical meaning of certain elements of the text, similar to the way HTML does.
-
-Using LaTeX requires a TeX distribution. 
-It is a collections of packages and programs (compilers, fonts, and macro packages) that can turn the LaTeX source code into a printable output format (usually PDF).
-
-LaTeX source codes are simply plain text, so they can be edited with any text editor (e.g. Notepad). 
-However, it’s most convenient to have an editor that is designed to work with LaTeX, as they provide features like one-click compilation of your files, built-in PDF viewers, and syntax highlighting.
-
-## What is TeXfireplace?
-
-The _TeXfireplace_ is an easy-to-install compact framework for using LaTeX on Windows.
-The installer downloads and installs the following programs: 
+The TeXfireplace framework includes the following:
 
 - **MiKTeX**
 ([https://miktex.org](https://miktex.org)) <br>
@@ -57,11 +40,11 @@ for `minted` ([https://ctan.org/pkg/minted](https://ctan.org/pkg/minted)) LaTeX 
 Download the **[TeXfireplace installer][download]** (about 4MB) and run it! Internet connection is required for installation.
 After finishing the process (about 5-10 minutes) click the TeXstudio icon on the desktop (or in the start menu) and happy LaTeXing!
 
-[<img src="download2.svg" height="30"/>][Download]
+[<img src="download.svg" height="30"/>][Download]
 
 - **SHA-256:** `d718245fe7187e717a68cdaa072c5a50568a96e4437f8c07af6af83ca230d209`
 
-- TeXfireplace will be installed for the current user, no admin privileges are required.
+- The TeXfireplace framework will be installed for the current user, no admin privileges are required.
 
 - You can set which Perl system you want to use (TLPerl or Strawberry Perl).
 
@@ -83,11 +66,6 @@ After finishing the process (about 5-10 minutes) click the TeXstudio icon on the
      - **Registry for the current user** <br>
      If you choose this, the PATHs will be written in the registry (HKCU) at the beginning of the `%PATH%` environment variable.
 
-## Updating older versions
-
-Support for versions 4.3 and older has been discontinued.
-To upgrade from these versions, first uninstall them and then reinstall the current version.
-
 ## Give feedback
 
 Feature requests, bug reports, and questions can be placed in the **[issue tracker](https://github.com/tibortomacs/texfireplace/issues)**. 
@@ -100,9 +78,10 @@ The TeXfireplace icon is provided by Recognize (recognizeapp.com) as Creative Co
 
 ---
 
-*The TeXfireplace installer is a batch script that can be run from a graphical user interface. The GUI is written in Free Pascal using Lazarus.
-It is a free and open source program maintained by Tibor Tómács.*
+*The TeXfireplace installer is a batch script that can be run from a graphical user interface. The GUI is written in Free Pascal using Lazarus.*
+
+*It is a free and open source program maintained by Tibor Tómács.*
+
+*© Copyright 2022–2025 Tibor Tómács*
 
 ---
-
-<p align="center"><img src="texfireplace-puzzle.svg" height="60"/></p>
