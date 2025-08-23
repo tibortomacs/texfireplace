@@ -234,7 +234,6 @@ end;
 procedure TFormInstall.ButtonInstallClick(Sender: TObject);
 var
   perl, python, path: string;
-  f: text;
   ProcessInstall, ProcessViewLog: TProcess;
   topcoord: integer = 115;
   diff: integer = 25;
@@ -260,14 +259,6 @@ begin
 
   MemoInstallBat.Lines.SaveToFile(GetTempDir + 'texfireplaceinstall.bat');
   MemoTexstudioIni.Lines.SaveToFile(GetTempDir + 'texstudio.ini');
-
-  if not FileExists(GetTempDir + 'texfireplaceinstall.bat') then begin
-    assignfile(f,GetTempDir + 'texfireplaceinstall.bat');
-    rewrite(f);
-    writeln(f,'echo ERROR: %temp%\texfireplaceinstall.bat > "%temp%\texfireplaceinstall.log"');
-    writeln(f,'exit /b 1');
-    closefile(f);
-  end;
 
   if DirectoryExists(GetEnvironmentVariable('LOCALAPPDATA') + '\TeXfireplace') then begin
     topcoord := topcoord + diff;
@@ -307,85 +298,98 @@ begin
 
   ProcessInstall := TProcess.Create(nil);
   try
-    ProcessInstall.InheritHandles := false;
-    ProcessInstall.ShowWindow := swoHide;
-    ProcessInstall.Executable := 'cmd.exe';
-    ProcessInstall.Parameters.Add('/c');
-    ProcessInstall.Parameters.Add('"' + GetTempDir + 'texfireplaceinstall.bat"');
-    ProcessInstall.Parameters.Add(perl);
-    ProcessInstall.Parameters.Add(python);
-    ProcessInstall.Parameters.Add(path);
-    ProcessInstall.Execute;
-
-    topcoord := 115;
-
-    while ProcessInstall.Running do begin
-      if FileExists(GetTempDir + 'texfireplaceinstall-remove.txt') then begin
-        DeleteFile(GetTempDir + 'texfireplaceinstall-remove.txt');
-        topcoord := topcoord + diff;
-        ImageArrow.Top := topcoord;
-        ImageArrow.Visible := true;
+    try
+      if not FileExists(GetTempDir + 'texfireplaceinstall.bat') then raise Exception.Create('No texfireplaceinstall.bat');
+      ProcessInstall.InheritHandles := false;
+      ProcessInstall.ShowWindow := swoHide;
+      ProcessInstall.Executable := 'cmd.exe';
+      ProcessInstall.Parameters.Add('/c');
+      ProcessInstall.Parameters.Add('"' + GetTempDir + 'texfireplaceinstall.bat"');
+      ProcessInstall.Parameters.Add(perl);
+      ProcessInstall.Parameters.Add(python);
+      ProcessInstall.Parameters.Add(path);
+      ProcessInstall.Execute;
+  
+      topcoord := 115;
+  
+      while ProcessInstall.Running do begin
+        if FileExists(GetTempDir + 'texfireplaceinstall-remove.txt') then begin
+          DeleteFile(GetTempDir + 'texfireplaceinstall-remove.txt');
+          topcoord := topcoord + diff;
+          ImageArrow.Top := topcoord;
+          ImageArrow.Visible := true;
+        end;
+  
+        if FileExists(GetTempDir + 'texfireplaceinstall-miktex.txt') then begin
+          DeleteFile(GetTempDir + 'texfireplaceinstall-miktex.txt');
+          if LabelRemove.Visible then ImageCheckRemove.Visible := true;
+          topcoord := topcoord + diff;
+          ImageArrow.Top := topcoord;
+          ImageArrow.Visible := true;
+        end;
+  
+        if FileExists(GetTempDir + 'texfireplaceinstall-perl.txt') then begin
+          DeleteFile(GetTempDir + 'texfireplaceinstall-perl.txt');
+          ImageCheckMiktex.Visible := true;
+          topcoord := topcoord + diff;
+          ImageArrow.Top := topcoord;
+        end;
+  
+        if FileExists(GetTempDir + 'texfireplaceinstall-python.txt') then begin
+          DeleteFile(GetTempDir + 'texfireplaceinstall-python.txt');
+          ImageCheckPerl.Visible := true;
+          topcoord := topcoord + diff;
+          ImageArrow.Top := topcoord;
+        end;
+  
+        if FileExists(GetTempDir + 'texfireplaceinstall-texstudio.txt') then begin
+          DeleteFile(GetTempDir + 'texfireplaceinstall-texstudio.txt');
+          if LabelPython.Visible then ImageCheckPython.Visible := true else ImageCheckPerl.Visible := true;
+          topcoord := topcoord + diff;
+          ImageArrow.Top := topcoord;
+        end;
+  
+        if FileExists(GetTempDir + 'texfireplaceinstall-completion.txt') then begin
+          DeleteFile(GetTempDir + 'texfireplaceinstall-completion.txt');
+          ImageCheckTexstudio.Visible := true;
+          topcoord := topcoord + diff;
+          ImageArrow.Top := topcoord;
+        end;
+  
+        sleep(50);
+        Application.ProcessMessages;
       end;
+  
+      ProcessInstall.WaitOnExit;
+      ProgressBarInstall.Visible := false;
+      ImageArrow.Visible := false;
+      LabelClick.Visible := false;
 
-      if FileExists(GetTempDir + 'texfireplaceinstall-miktex.txt') then begin
-        DeleteFile(GetTempDir + 'texfireplaceinstall-miktex.txt');
-        if LabelRemove.Visible then ImageCheckRemove.Visible := true;
-        topcoord := topcoord + diff;
-        ImageArrow.Top := topcoord;
-        ImageArrow.Visible := true;
+      if ProcessInstall.ExitStatus <> 0 then begin
+        LabelInstall.Caption := 'TeXfireplace installation failed!';
+        ProcessViewLog := TProcess.Create(nil);
+        try
+          ProcessViewLog.Executable := 'notepad.exe';
+          ProcessViewLog.Parameters.Add('"' + GetTempDir + 'texfireplaceinstall.log"');
+          ProcessViewLog.Execute;
+        finally
+          ProcessViewLog.Free;
+        end;
+      end
+      else begin
+        ImageCheckCompletion.Visible := true;
+        LabelInstall.Caption := 'TeXfireplace installation completed successfully!';
       end;
-
-      if FileExists(GetTempDir + 'texfireplaceinstall-perl.txt') then begin
-        DeleteFile(GetTempDir + 'texfireplaceinstall-perl.txt');
-        ImageCheckMiktex.Visible := true;
-        topcoord := topcoord + diff;
-        ImageArrow.Top := topcoord;
+  
+    except
+      on E: Exception do
+      begin
+        LabelInstall.Caption := 'TeXfireplace installation failed!';
+        ProgressBarInstall.Visible := false;
+        ImageArrow.Visible := false;
+        LabelClick.Visible := false;
+        MessageDlg(E.Message,mtError,[mbOk],0);
       end;
-
-      if FileExists(GetTempDir + 'texfireplaceinstall-python.txt') then begin
-        DeleteFile(GetTempDir + 'texfireplaceinstall-python.txt');
-        ImageCheckPerl.Visible := true;
-        topcoord := topcoord + diff;
-        ImageArrow.Top := topcoord;
-      end;
-
-      if FileExists(GetTempDir + 'texfireplaceinstall-texstudio.txt') then begin
-        DeleteFile(GetTempDir + 'texfireplaceinstall-texstudio.txt');
-        if LabelPython.Visible then ImageCheckPython.Visible := true else ImageCheckPerl.Visible := true;
-        topcoord := topcoord + diff;
-        ImageArrow.Top := topcoord;
-      end;
-
-      if FileExists(GetTempDir + 'texfireplaceinstall-completion.txt') then begin
-        DeleteFile(GetTempDir + 'texfireplaceinstall-completion.txt');
-        ImageCheckTexstudio.Visible := true;
-        topcoord := topcoord + diff;
-        ImageArrow.Top := topcoord;
-      end;
-
-      sleep(50);
-      Application.ProcessMessages;
-    end;
-
-    ProcessInstall.WaitOnExit;
-    ProgressBarInstall.Visible := false;
-    ImageArrow.Visible := false;
-    LabelClick.Visible := false;
-
-    if ProcessInstall.ExitStatus = 1 then begin
-      LabelInstall.Caption := 'TeXfireplace installation failed!';
-      ProcessViewLog := TProcess.Create(nil);
-      try
-        ProcessViewLog.Executable := 'notepad.exe';
-        ProcessViewLog.Parameters.Add('"' + GetTempDir + 'texfireplaceinstall.log"');
-        ProcessViewLog.Execute;
-      finally
-        ProcessViewLog.Free;
-      end;
-    end
-    else begin
-      ImageCheckCompletion.Visible := true;
-      LabelInstall.Caption := 'TeXfireplace installation completed successfully!';
     end;
 
   finally
