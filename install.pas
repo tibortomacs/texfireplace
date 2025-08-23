@@ -88,7 +88,18 @@ implementation
 procedure TFormInstall.FormActivate(Sender: TObject);
 var
   progpath: string;
+  f: text;
 begin
+  if FileExists(GetTempDir + 'texfireplaceinstall-lock.txt') then begin
+    MessageDlg('The TeXfireplace installer is already running!',mtWarning,[mbOk],0);
+    Halt;
+  end
+  else begin
+    AssignFile(f,GetTempDir + 'texfireplaceinstall-lock.txt');
+    Rewrite(f);
+    CloseFile(f);
+  end;
+
   ImageInfoPython.Picture.Assign(ImageInfoTexsystem.Picture);
   ImageInfoPerl.Picture.Assign(ImageInfoTexsystem.Picture);
   ImageInfoPath.Picture.Assign(ImageInfoTexsystem.Picture);
@@ -138,6 +149,7 @@ procedure TFormInstall.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   if not ButtonCancel.Enabled then CanClose := false;
   if (ButtonCancel.Caption = 'Cancel') and (MessageDlg('Are you sure you want to quit the TeXfireplace installer?',mtWarning,[mbYes,mbNo],0) = mrNo) then CanClose := false;
+  if CanClose then DeleteFile(GetTempDir + 'texfireplaceinstall-lock.txt');
 end;
 
 // -----------------------------------------------------
@@ -239,7 +251,10 @@ var
   diff: integer = 25;
 begin
   if DirectoryExists(GetEnvironmentVariable('LOCALAPPDATA') + '\TeXfireplace') and
-     (MessageDlg('TeXfireplace is already installed. Are you sure you want to reinstall it?',mtWarning,[mbYes,mbNo],0) = mrNo) then Halt;
+     (MessageDlg('TeXfireplace is already installed. Are you sure you want to reinstall it?',mtWarning,[mbYes,mbNo],0) = mrNo) then begin
+    DeleteFile(GetTempDir + 'texfireplaceinstall-lock.txt');
+    Halt;
+  end;
 
   ButtonBack.Visible := false;
   ButtonInstall.Visible := false;
