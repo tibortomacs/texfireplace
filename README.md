@@ -72,13 +72,15 @@ Feature requests, bug reports, and questions can be placed in the **[issue track
 
 ## License
 
-The TeXfireplace is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation. <br>
+The TeXfireplace is licensed to you under the terms of the GNU General Public License Version 2 as published by the Free Software Foundation.
 The TeXfireplace icon is provided by Recognize (recognizeapp.com) as Creative Commons Attribution 4.0 International License.
 
 ---
 
-*The TeXfireplace installer is a batch script that can be run from a graphical user interface. The GUI is written in Free Pascal using Lazarus.* <br>
-*It is a free and open source program maintained by Tibor Tómács.* <br>
+*The TeXfireplace installer is a batch script that can be run from a graphical user interface.
+The GUI is written in Free Pascal using Lazarus.
+It is a free and open source program maintained by Tibor Tómács.*
+
 *© Copyright 2022–2025 Tibor Tómács*
 
 ---
