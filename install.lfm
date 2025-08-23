@@ -8,8 +8,8 @@ object FormInstall: TFormInstall
   Caption = 'Install TeXfireplace'
   ClientHeight = 400
   ClientWidth = 560
+  Color = clForm
   Position = poScreenCenter
-  LCLVersion = '4.2.0.0'
   OnActivate = FormActivate
   OnCloseQuery = FormCloseQuery
   object NotebookInstall: TNotebook
@@ -26,7 +26,7 @@ object FormInstall: TFormInstall
         Height = 360
         Top = 0
         Width = 200
-        Brush.Color = clBlack
+        Brush.Color = clForm
         Pen.Style = psClear
         Pen.Width = 0
       end
