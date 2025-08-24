@@ -66,6 +66,7 @@ type
     procedure CheckBoxTexstudioClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    function CountTeXfireplaceInstances: Integer;
   private
 
   public
@@ -88,16 +89,10 @@ implementation
 procedure TFormInstall.FormActivate(Sender: TObject);
 var
   progpath: string;
-  f: text;
 begin
-  if FileExists(GetTempDir + 'texfireplaceinstall-lock.txt') then begin
-    MessageDlg('The TeXfireplace installer is already running!',mtWarning,[mbOk],0);
+  if CountTeXfireplaceInstances > 1 then begin
+    MessageDlg('Another instance of TeXfireplace installer is running!',mtWarning,[mbOk],0);
     Halt;
-  end
-  else begin
-    AssignFile(f,GetTempDir + 'texfireplaceinstall-lock.txt');
-    Rewrite(f);
-    CloseFile(f);
   end;
 
   ImageInfoPython.Picture.Assign(ImageInfoTexsystem.Picture);
@@ -149,7 +144,6 @@ procedure TFormInstall.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
 begin
   if not ButtonCancel.Enabled then CanClose := false;
   if (ButtonCancel.Caption = 'Cancel') and (MessageDlg('Are you sure you want to quit the TeXfireplace installer?',mtWarning,[mbYes,mbNo],0) = mrNo) then CanClose := false;
-  if CanClose then DeleteFile(GetTempDir + 'texfireplaceinstall-lock.txt');
 end;
 
 // -----------------------------------------------------
@@ -251,10 +245,7 @@ var
   diff: integer = 25;
 begin
   if DirectoryExists(GetEnvironmentVariable('LOCALAPPDATA') + '\TeXfireplace') and
-     (MessageDlg('TeXfireplace is already installed. Are you sure you want to reinstall it?',mtWarning,[mbYes,mbNo],0) = mrNo) then begin
-    DeleteFile(GetTempDir + 'texfireplaceinstall-lock.txt');
-    Halt;
-  end;
+     (MessageDlg('TeXfireplace is already installed. Are you sure you want to reinstall it?',mtWarning,[mbYes,mbNo],0) = mrNo) then Halt;
 
   ButtonBack.Visible := false;
   ButtonInstall.Visible := false;
@@ -324,9 +315,9 @@ begin
       ProcessInstall.Parameters.Add(python);
       ProcessInstall.Parameters.Add(path);
       ProcessInstall.Execute;
-  
+
       topcoord := 115;
-  
+
       while ProcessInstall.Running do begin
         if FileExists(GetTempDir + 'texfireplaceinstall-remove.txt') then begin
           DeleteFile(GetTempDir + 'texfireplaceinstall-remove.txt');
@@ -334,7 +325,7 @@ begin
           ImageArrow.Top := topcoord;
           ImageArrow.Visible := true;
         end;
-  
+
         if FileExists(GetTempDir + 'texfireplaceinstall-miktex.txt') then begin
           DeleteFile(GetTempDir + 'texfireplaceinstall-miktex.txt');
           if LabelRemove.Visible then ImageCheckRemove.Visible := true;
@@ -342,39 +333,39 @@ begin
           ImageArrow.Top := topcoord;
           ImageArrow.Visible := true;
         end;
-  
+
         if FileExists(GetTempDir + 'texfireplaceinstall-perl.txt') then begin
           DeleteFile(GetTempDir + 'texfireplaceinstall-perl.txt');
           ImageCheckMiktex.Visible := true;
           topcoord := topcoord + diff;
           ImageArrow.Top := topcoord;
         end;
-  
+
         if FileExists(GetTempDir + 'texfireplaceinstall-python.txt') then begin
           DeleteFile(GetTempDir + 'texfireplaceinstall-python.txt');
           ImageCheckPerl.Visible := true;
           topcoord := topcoord + diff;
           ImageArrow.Top := topcoord;
         end;
-  
+
         if FileExists(GetTempDir + 'texfireplaceinstall-texstudio.txt') then begin
           DeleteFile(GetTempDir + 'texfireplaceinstall-texstudio.txt');
           if LabelPython.Visible then ImageCheckPython.Visible := true else ImageCheckPerl.Visible := true;
           topcoord := topcoord + diff;
           ImageArrow.Top := topcoord;
         end;
-  
+
         if FileExists(GetTempDir + 'texfireplaceinstall-completion.txt') then begin
           DeleteFile(GetTempDir + 'texfireplaceinstall-completion.txt');
           ImageCheckTexstudio.Visible := true;
           topcoord := topcoord + diff;
           ImageArrow.Top := topcoord;
         end;
-  
+
         sleep(50);
         Application.ProcessMessages;
       end;
-  
+
       ProcessInstall.WaitOnExit;
       ProgressBarInstall.Visible := false;
       ImageArrow.Visible := false;
@@ -395,7 +386,7 @@ begin
         ImageCheckCompletion.Visible := true;
         LabelInstall.Caption := 'TeXfireplace installation completed successfully!';
       end;
-  
+
     except
       on E: Exception do
       begin
@@ -414,6 +405,36 @@ begin
   DeleteFile(GetTempDir + 'texfireplaceinstall.bat');
   if FileExists(GetTempDir + 'texstudio.ini') then DeleteFile(GetTempDir + 'texstudio.ini');
   ButtonCancel.Enabled := true;
+end;
+
+// -----------------------------------------------------
+// COUNT TEXFIREPLACE INSTANCES
+// -----------------------------------------------------
+
+function TFormInstall.CountTeXfireplaceInstances: Integer;
+var
+  SL: TStringList;
+  i: Integer;
+  outStr: AnsiString;
+  line: string;
+begin
+  Result := 0;
+  SL := TStringList.Create;
+  try
+    if RunCommand('tasklist', ['/FI', 'IMAGENAME eq texfireplace.exe', '/NH'], outStr, [poNoConsole, poUsePipes]) then
+    begin
+      SL.Text := string(outStr);
+      for i := 0 to SL.Count - 1 do
+      begin
+        line := Trim(SL[i]);
+        if line = '' then Continue;
+        if Pos('INFO:', line) = 1 then Continue;
+        if Pos('texfireplace.exe', LowerCase(line)) > 0 then Inc(Result);
+      end;
+    end;
+  finally
+    SL.Free;
+  end;
 end;
 
 end.
