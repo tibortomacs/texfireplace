@@ -10,6 +10,7 @@ object FormInstall: TFormInstall
   ClientWidth = 560
   Color = clForm
   Position = poScreenCenter
+  LCLVersion = '4.2.0.0'
   OnActivate = FormActivate
   OnCloseQuery = FormCloseQuery
   object NotebookInstall: TNotebook
@@ -959,20 +960,23 @@ object FormInstall: TFormInstall
       'echo. >> "%temp%\texfireplaceinstall.log"'
       'echo Remove previous TeXfireplace installation >> "%temp%\texfireplaceinstall.log"'
       'echo. > "%temp%\texfireplaceinstall-remove.txt"'
+      'for /f "tokens=2,*" %%i in (''reg query HKCU\Environment /v PATH'') do set "userpath=%%j"'
+      'if "%userpath%"=="" goto removenextstep'
+      'set "newuserpath=%userpath%"'
+      'call set "newuserpath=%%newuserpath:%texdir%\python\Scripts;=%%"'
+      'call set "newuserpath=%%newuserpath:%texdir%\python;=%%"'
+      'call set "newuserpath=%%newuserpath:%texdir%\perl\bin;=%%"'
+      'call set "newuserpath=%%newuserpath:%texdir%\texmfs\install\miktex\bin\x64;=%%"'
+      'if not "%newuserpath%"=="%userpath%" powershell -NoProfile -Command "[Environment]::SetEnvironmentVariable(''PATH'', ''%newuserpath%'', ''User'')"'
+      ':removenextstep'
       'reg delete "HKCU\Software\Classes\.tex" /f'
       'reg delete "HKCU\Software\Classes\texfile" /f'
       'rmdir /s /q "%appdata%\Microsoft\Windows\Start Menu\Programs\TeXfireplace"'
       'del "%userprofile%\Desktop\TeXstudio.lnk"'
-      'rmdir /s /q "%texdir%"'
-      'for /f "tokens=2,*" %%i in (''reg query HKCU\Environment /v PATH'') do set userpath=%%j'
-      'if "%userpath%"=="" goto endoldinst'
-      'call set "userpath=%%userpath:%texdir%\python\Scripts;=%%"'
-      'call set "userpath=%%userpath:%texdir%\python;=%%"'
-      'call set "userpath=%%userpath:%texdir%\perl\bin;=%%"'
-      'call set "userpath=%%userpath:%texdir%\texmfs\install\miktex\bin\x64;=%%"'
-      'powershell -NoProfile -Command "[Environment]::SetEnvironmentVariable(''PATH'', ''%userpath%'', ''User'')"'
       'reg delete "HKCU\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\TeXfireplace" /f'
       'reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Uninstall\TeXfireplace" /f'
+      'rmdir /s /q "%texdir%"'
+      'if %errorlevel% neq 0 set "exit_code=1" & echo - ERROR: The previous installation folder could not be deleted, perhaps due to a running application >> "%temp%\texfireplaceinstall.log" & goto endinstall'
       ':endoldinst'
       ''
       ':: MikTeX'
