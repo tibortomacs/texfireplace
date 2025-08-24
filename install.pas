@@ -373,12 +373,17 @@ begin
         LabelInstall.Caption := 'TeXfireplace installation failed!';
         LabelClick.Visible := false;
         ProcessViewLog := TProcess.Create(nil);
-        try
-          ProcessViewLog.Executable := 'notepad.exe';
-          ProcessViewLog.Parameters.Add('"' + GetTempDir + 'texfireplaceinstall.log"');
-          ProcessViewLog.Execute;
-        finally
-          ProcessViewLog.Free;
+        if FileExists(GetTempDir + 'texfireplaceinstall.log') then begin
+          try
+            ProcessViewLog.Executable := 'notepad.exe';
+            ProcessViewLog.Parameters.Add('"' + GetTempDir + 'texfireplaceinstall.log"');
+            ProcessViewLog.Execute;
+          finally
+            ProcessViewLog.Free;
+          end;
+        end
+        else begin
+          MessageDlg('There is no log file for an unknown reason!',mtError,[mbOk],0);
         end;
       end
       else begin
