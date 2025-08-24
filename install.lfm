@@ -10,7 +10,6 @@ object FormInstall: TFormInstall
   ClientWidth = 560
   Color = clForm
   Position = poScreenCenter
-  LCLVersion = '4.2.0.0'
   OnActivate = FormActivate
   OnCloseQuery = FormCloseQuery
   object NotebookInstall: TNotebook
@@ -529,8 +528,8 @@ object FormInstall: TFormInstall
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 43
-        ClientWidth = 388
+        ClientHeight = 63
+        ClientWidth = 392
         ParentBackground = False
         TabOrder = 3
         object RadioButtonTlperl: TRadioButton
@@ -564,8 +563,8 @@ object FormInstall: TFormInstall
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 57
-        ClientWidth = 388
+        ClientHeight = 77
+        ClientWidth = 392
         ParentBackground = False
         TabOrder = 4
         object RadioButtonTxsini: TRadioButton
@@ -683,11 +682,16 @@ object FormInstall: TFormInstall
       end
       object LabelClick: TLabel
         Left = 32
-        Height = 15
+        Height = 17
         Top = 72
-        Width = 184
+        Width = 200
         Caption = 'Click Install to start the installation.'
+        Font.CharSet = EASTEUROPE_CHARSET
+        Font.Height = -13
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
         ParentColor = False
+        ParentFont = False
       end
       object LabelRemove: TLabel
         Left = 54
