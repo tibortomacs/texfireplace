@@ -263,9 +263,6 @@ begin
   if RadioButtonTxsvbs.Checked then path := 'txsvbs';
   if RadioButtonReg.Checked then path := 'reg';
 
-  MemoInstallBat.Lines.SaveToFile(GetTempDir + 'texfireplaceinstall.bat');
-  MemoTexstudioIni.Lines.SaveToFile(GetTempDir + 'texstudio.ini');
-
   if DirectoryExists(GetEnvironmentVariable('LOCALAPPDATA') + '\TeXfireplace') then begin
     topcoord := topcoord + diff;
     LabelRemove.Top := topcoord;
@@ -305,7 +302,9 @@ begin
   ProcessInstall := TProcess.Create(nil);
   try
     try
-      if not FileExists(GetTempDir + 'texfireplaceinstall.bat') then raise Exception.Create('No texfireplaceinstall.bat');
+      MemoInstallBat.Lines.SaveToFile(GetTempDir + 'texfireplaceinstall.bat');
+      MemoTexstudioIni.Lines.SaveToFile(GetTempDir + 'texstudio.ini');
+
       ProcessInstall.InheritHandles := false;
       ProcessInstall.ShowWindow := swoHide;
       ProcessInstall.Executable := 'cmd.exe';
