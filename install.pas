@@ -368,10 +368,10 @@ begin
       ProcessInstall.WaitOnExit;
       ProgressBarInstall.Visible := false;
       ImageArrow.Visible := false;
-      LabelClick.Visible := false;
 
       if ProcessInstall.ExitStatus <> 0 then begin
         LabelInstall.Caption := 'TeXfireplace installation failed!';
+        LabelClick.Visible := false;
         ProcessViewLog := TProcess.Create(nil);
         try
           ProcessViewLog.Executable := 'notepad.exe';
@@ -384,6 +384,7 @@ begin
       else begin
         ImageCheckCompletion.Visible := true;
         LabelInstall.Caption := 'TeXfireplace installation completed successfully!';
+        LabelClick.Caption := 'Run the TeXstudio and happy LaTeXing!';
       end;
 
     except
