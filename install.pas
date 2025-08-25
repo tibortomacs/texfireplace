@@ -66,7 +66,7 @@ type
     procedure CheckBoxTexstudioClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-    function CountTeXfireplaceInstances: Integer;
+    function AnotherInstanceIsRunning: Boolean;
   private
 
   public
@@ -90,7 +90,7 @@ procedure TFormInstall.FormActivate(Sender: TObject);
 var
   progpath: string;
 begin
-  if CountTeXfireplaceInstances > 1 then begin
+  if AnotherInstanceIsRunning then begin
     MessageDlg('Another instance of TeXfireplace installer is running!',mtWarning,[mbOk],0);
     Halt;
   end;
@@ -413,28 +413,24 @@ begin
 end;
 
 // -----------------------------------------------------
-// COUNT TEXFIREPLACE INSTANCES
+// ANOTHER INSTANCE IS RUNNING
 // -----------------------------------------------------
 
-function TFormInstall.CountTeXfireplaceInstances: Integer;
+function TFormInstall.AnotherInstanceIsRunning: Boolean;
 var
   SL: TStringList;
-  i: Integer;
+  i,j: Integer;
   outStr: AnsiString;
-  line: string;
 begin
-  Result := 0;
+  Result := false;
+  j := 0;
   SL := TStringList.Create;
   try
-    if RunCommand('tasklist', ['/FI', 'IMAGENAME eq texfireplace.exe', '/NH'], outStr, [poNoConsole, poUsePipes]) then
-    begin
+    if RunCommand('tasklist', ['/FI', 'IMAGENAME eq texfireplace.exe', '/NH'], outStr, [poNoConsole, poUsePipes]) then begin
       SL.Text := string(outStr);
-      for i := 0 to SL.Count - 1 do
-      begin
-        line := Trim(SL[i]);
-        if line = '' then Continue;
-        if Pos('INFO:', line) = 1 then Continue;
-        if Pos('texfireplace.exe', LowerCase(line)) > 0 then Inc(Result);
+      for i := 0 to SL.Count - 1 do begin
+        if Pos('texfireplace.exe', LowerCase(SL[i])) > 0 then j := j + 1;
+        if j = 2 then begin Result := true; Break; end;
       end;
     end;
   finally
