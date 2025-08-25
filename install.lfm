@@ -529,8 +529,8 @@ object FormInstall: TFormInstall
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 63
-        ClientWidth = 392
+        ClientHeight = 43
+        ClientWidth = 388
         ParentBackground = False
         TabOrder = 3
         object RadioButtonTlperl: TRadioButton
@@ -564,8 +564,8 @@ object FormInstall: TFormInstall
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 77
-        ClientWidth = 392
+        ClientHeight = 57
+        ClientWidth = 388
         ParentBackground = False
         TabOrder = 4
         object RadioButtonTxsini: TRadioButton
@@ -595,74 +595,15 @@ object FormInstall: TFormInstall
           TabStop = True
         end
       end
-      object ImageInfoTexsystem: TImage
-        Left = 452
-        Height = 24
-        Top = 72
-        Width = 24
-        Center = True
-        ParentShowHint = False
-        Picture.Data = {
-          1754506F727461626C654E6574776F726B477261706869632503000089504E47
-          0D0A1A0A0000000D4948445200000018000000180806000000E0773DF8000000
-          097048597300000EC400000EC401952B0E1B000002D74944415448898D963B68
-          14511885BF332C62A141421011711705092944D4C247B38B04820641443BB150
-          42D6268D20222262616327BA6B6367230A9262898A8C8DA4F0411A2582C82E58
-          8884B08858C8E2B198C9CCEC6BCCC03067E6DEFFFCE73FF73157E45C956A6B27
-          30054C8227405BE3A6EFC027E015F0026886B5E2400E0D2005D88E7D0DE92C30
-          96270258B57922710BF32DAC77270AFABADB53C022E2524AEEBC04A31233D88B
-          88E9DC0A2AB3CD8B86BB828D69B3C9E2DC54F00731F7BA56AA772528CF36413A
-          2E788AD998A4754642843BC007ECDF488748847427319C11CC87B5626491D00E
-          4C2D21CF8AEEAEF53E7018E918702569CB966536C8DC037600A8526D82798098
-          E962B4B1841C4547981361BDD800A8CCB6F6187F1EE695A487980B2ACFB64A12
-          EF81D1AC2DFDEE00B0807DC1D25FC14D60665802A00D1C28484CF592039172A9
-          174F59FA28E8F0BFE96BB600D30560D238E2957AFA24E46DC392F02AB0C76622
-          973CBD2603E309A1547A3C6056F4D5520338069C086BA5D3B20E0B3D93C43AEE
-          F140E9F2EFB7287A3D68FB39700920AC177F219EAEB382B18221488CC90EAEB4
-          86B74A02B3391338DABDFC86E30058C9CEE32499214AE1B5C17893693A9A3195
-          1CBC1A10ED8A71A4D3A7D2EE162B364B00E56A6B93E0889DAA1D8631CB81E065
-          9A32D2BC369B32E5BE935889B0F702DB06ACF23E6CF12A00166CDAFFB16831AC
-          95FEC63DF6031BD661D14FEC4680F922793ED7225201D81D70C7D0CEB5C83424
-          2D0761BD08D60DDBDF875A244E95ABADD1F8A50EDA2D789C63D10FC4B5B056A4
-          107F6E4A9AB3FD485221B148C9AA2B0BBFAD545B4BC088CD3E89310DE6EF18E6
-          80AFBD6D54AAADCBC06DEC42EFB69138140739065DD8EE205D05DF096B25A0FF
-          9779C7700EF4236B512F1E245BB082743E4BDE57014025FABBED32BE25340D1E
-          C102796088E1A77003B80EFAD27BBA18EC03C9E9621C731231098C035BE29DB7
-          6DB42CFBA5615ED2F2B063CB3F0D9B3AA05176090E0000000049454E44AE4260
-          82
-        }
-        ShowHint = True
+      object ButtonInfo: TButton
+        Left = 475
+        Height = 25
+        Top = 24
+        Width = 75
+        Caption = 'Info'
+        TabOrder = 5
         Visible = False
-      end
-      object ImageInfoPython: TImage
-        Left = 452
-        Height = 24
-        Top = 140
-        Width = 24
-        Center = True
-        ParentShowHint = False
-        ShowHint = True
-        Visible = False
-      end
-      object ImageInfoPerl: TImage
-        Left = 452
-        Height = 24
-        Top = 183
-        Width = 24
-        Center = True
-        ParentShowHint = False
-        ShowHint = True
-        Visible = False
-      end
-      object ImageInfoPath: TImage
-        Left = 452
-        Height = 24
-        Top = 260
-        Width = 24
-        Center = True
-        ParentShowHint = False
-        ShowHint = True
-        Visible = False
+        OnClick = ButtonInfoClick
       end
     end
     object PageInstall: TPage

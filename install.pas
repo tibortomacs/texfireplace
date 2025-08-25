@@ -12,6 +12,7 @@ type
   { TFormInstall }
 
   TFormInstall = class(TForm)
+    ButtonInfo: TButton;
     ButtonInstall: TButton;
     ButtonBack: TButton;
     ButtonCancel: TButton;
@@ -20,16 +21,12 @@ type
     CheckBoxMiktex: TCheckBox;
     CheckBoxPython: TCheckBox;
     ImageArrow: TImage;
-    ImageInfoPerl: TImage;
-    ImageInfoPath: TImage;
-    ImageInfoTexsystem: TImage;
     ImageCheckPython: TImage;
     ImageCheckTexstudio: TImage;
     ImageCheckRemove: TImage;
     ImageCheckMiktex: TImage;
     ImageCheckPerl: TImage;
     ImageCheckCompletion: TImage;
-    ImageInfoPython: TImage;
     ImageWelcome: TImage;
     LabelCompletion: TLabel;
     LabelTexstudio: TLabel;
@@ -59,6 +56,7 @@ type
     Background: TShape;
     procedure ButtonBackClick(Sender: TObject);
     procedure ButtonCancelClick(Sender: TObject);
+    procedure ButtonInfoClick(Sender: TObject);
     procedure ButtonInstallClick(Sender: TObject);
     procedure ButtonNextClick(Sender: TObject);
     procedure CheckBoxMiktexClick(Sender: TObject);
@@ -75,6 +73,10 @@ type
 
 var
   FormInstall: TFormInstall;
+  InfoPerl: string = '';
+  InfoPython: string = '';
+  InfoTex: string = '';
+  InfoPath: string = '';
 
 implementation
 
@@ -95,9 +97,6 @@ begin
     Halt;
   end;
 
-  ImageInfoPython.Picture.Assign(ImageInfoTexsystem.Picture);
-  ImageInfoPerl.Picture.Assign(ImageInfoTexsystem.Picture);
-  ImageInfoPath.Picture.Assign(ImageInfoTexsystem.Picture);
   ImageCheckMiktex.Picture.Assign(ImageCheckRemove.Picture);
   ImageCheckPerl.Picture.Assign(ImageCheckRemove.Picture);
   ImageCheckPython.Picture.Assign(ImageCheckRemove.Picture);
@@ -109,30 +108,29 @@ begin
 
   progpath := FindDefaultExecutablePath('perl.exe');
   if (progpath <> '') and (Pos('texfireplace',LowerCase(progpath)) = 0) and (FileSize(progpath) <> 0) then begin
-    ImageInfoPerl.Hint := 'Perl is already installed.' + #10 + StringReplace(progpath,'\perl.exe','',[rfReplaceAll]);
-    ImageInfoPerl.Visible := true;
+    InfoPerl := 'Perl is already installed.' + #10 + StringReplace(progpath,'\perl.exe','',[rfReplaceAll]);
+    ButtonInfo.Visible := true;
   end;
 
   progpath := FindDefaultExecutablePath('python.exe');
   if (progpath <> '') and (Pos('texfireplace',LowerCase(progpath)) = 0) and (FileSize(progpath) <> 0) then begin
-    ImageInfoPython.Hint := 'Python is already installed.' + #10 + StringReplace(progpath,'\python.exe','',[rfReplaceAll]);
-    ImageInfoPython.Visible := true;
+    InfoPython := 'Python is already installed.' + #10 + StringReplace(progpath,'\python.exe','',[rfReplaceAll]);
+    ButtonInfo.Visible := true;
   end;
 
   progpath := FindDefaultExecutablePath('pdflatex.exe');
   if (progpath <> '') and (Pos('texfireplace',LowerCase(progpath)) = 0) and (FileSize(progpath) <> 0) then begin
-    ImageInfoTexsystem.Hint := 'TeX-system is already installed.' + #10 + StringReplace(progpath,'\pdflatex.exe','',[rfReplaceAll]);
-    ImageInfoTexsystem.Visible := true;
+    InfoTex := 'TeX-system is already installed.' + #10 + StringReplace(progpath,'\pdflatex.exe','',[rfReplaceAll]);
+    ButtonInfo.Visible := true;
   end;
 
-  if ImageInfoPerl.Visible or ImageInfoPython.Visible or ImageInfoTexsystem.Visible then begin
+  if ButtonInfo.Visible then begin
     RadioButtonTxsini.Checked := false;
     RadioButtonTxsvbs.Checked := true;
     RadioButtonReg.Checked := false;
     RadioButtonTxsini.Enabled := false;
     RadioButtonReg.Enabled := false;
-    ImageInfoPath.Hint := 'Due to the conditions,' + #10 + 'the PATH can only be written to the texstudio.vbs.';
-    ImageInfoPath.Visible := true;
+    InfoPath := 'The PATH can only be written to the texstudio.vbs.';
   end;
 end;
 
@@ -212,25 +210,40 @@ begin
   if (not CheckBoxPython.Checked) and
      (MessageDlg('Are you sure you will never use the minted package?',mtConfirmation,[mbYes,mbNo],0) = mrNo) then CheckBoxPython.Checked := true;
 
-  if (ImageInfoPerl.Hint = '') and (ImageInfoTexsystem.Hint = '') then begin
+  if InfoPerl + InfoTex = '' then begin
     RadioButtonTxsini.Checked := false;
     RadioButtonTxsvbs.Checked := false;
     RadioButtonReg.Checked := true;
     RadioButtonTxsini.Enabled := true;
     RadioButtonReg.Enabled := true;
-    ImageInfoPath.Hint := '';
-    ImageInfoPath.Visible := false;
+    InfoPath := '';
+    ButtonInfo.Visible := false;
   end;
 
-  if (ImageInfoPerl.Hint <> '') or (ImageInfoTexsystem.Hint <> '') or ((CheckBoxPython.Checked) and (ImageInfoPython.Hint <> '')) then begin
+  if (InfoPerl + InfoTex <> '') or (CheckBoxPython.Checked and (InfoPython <> '')) then begin
     RadioButtonTxsini.Checked := false;
     RadioButtonTxsvbs.Checked := true;
     RadioButtonReg.Checked := false;
     RadioButtonTxsini.Enabled := false;
     RadioButtonReg.Enabled := false;
-    ImageInfoPath.Hint := 'Due to the conditions,' + #10 + 'the PATH can only be written to the texstudio.vbs.';
-    ImageInfoPath.Visible := true;
+    InfoPath := 'The PATH can only be written to the texstudio.vbs.';
+    ButtonInfo.Visible := true;
   end;
+end;
+
+// -----------------------------------------------------
+// INFO BUTTON
+// -----------------------------------------------------
+
+procedure TFormInstall.ButtonInfoClick(Sender: TObject);
+var
+  Info: string = '';
+begin
+  if InfoTex <> '' then Info := Info + InfoTex + #10 + #10;
+  if (InfoPython <> '') and  CheckBoxPython.Checked then Info := Info + InfoPython + #10 + #10;
+  if InfoPerl <> '' then Info := Info + InfoPerl + #10 + #10;
+  if InfoPath <> '' then Info := Info + InfoPath;
+  MessageDlg(Info,mtInformation,[mbOk],0)
 end;
 
 // -----------------------------------------------------
