@@ -210,23 +210,18 @@ begin
   if (not CheckBoxPython.Checked) and
      (MessageDlg('Are you sure you will never use the minted package?',mtConfirmation,[mbYes,mbNo],0) = mrNo) then CheckBoxPython.Checked := true;
 
-  if InfoPerl + InfoTex = '' then begin
-    RadioButtonTxsini.Checked := false;
-    RadioButtonTxsvbs.Checked := false;
-    RadioButtonReg.Checked := true;
+  if (not CheckBoxPython.Checked) and (InfoPerl + InfoTex = '') then begin
     RadioButtonTxsini.Enabled := true;
     RadioButtonReg.Enabled := true;
-    InfoPath := '';
     ButtonInfo.Visible := false;
   end;
 
-  if (InfoPerl + InfoTex <> '') or (CheckBoxPython.Checked and (InfoPython <> '')) then begin
+  if CheckBoxPython.Checked and (InfoPerl + InfoTex + InfoPython <> '') then begin
     RadioButtonTxsini.Checked := false;
     RadioButtonTxsvbs.Checked := true;
     RadioButtonReg.Checked := false;
     RadioButtonTxsini.Enabled := false;
     RadioButtonReg.Enabled := false;
-    InfoPath := 'The PATH can only be written to the texstudio.vbs.';
     ButtonInfo.Visible := true;
   end;
 end;
