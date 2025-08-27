@@ -251,11 +251,19 @@ end;
 
 procedure TFormInstall.ButtonInstallClick(Sender: TObject);
 var
-  perl, python, path: string;
+  perlsystem, python, writepathin: string;
   ProcessInstall, ProcessViewLog: TProcess;
   topcoord: integer = 115;
   diff: integer = 25;
 begin
+  perlsystem := 'tlperl';
+  if RadioButtonStrawberry.Checked then perlsystem := 'strawberry';
+  python := 'no';
+  if CheckBoxPython.Checked then python := 'yes';
+  writepathin := 'txsini';
+  if RadioButtonTxsvbs.Checked then writepathin := 'txsvbs';
+  if RadioButtonReg.Checked then writepathin := 'reg';
+
   if DirectoryExists(InstallDir) and
      (MessageDlg('TeXfireplace is already installed. Are you sure you want to reinstall it?',mtWarning,[mbYes,mbNo],0) = mrNo) then Halt;
 
@@ -265,15 +273,6 @@ begin
   ButtonCancel.Caption := 'Close';
   LabelClick.Caption := 'Please be patient while the installation of TeXfireplace is in progress.';
   if RadioButtonTlperl.Checked then LabelPerl.Caption := 'TLPerl' else LabelPerl.Caption := 'Strawberry Perl';
-
-  python := 'no';
-  if CheckBoxPython.Checked then python := 'yes';
-  perl := 'no';
-  if RadioButtonTlperl.Checked then perl := 'tlperl';
-  if RadioButtonStrawberry.Checked then perl := 'strawberry';
-  path := 'txsini';
-  if RadioButtonTxsvbs.Checked then path := 'txsvbs';
-  if RadioButtonReg.Checked then path := 'reg';
 
   if DirectoryExists(InstallDir) then begin
     topcoord := topcoord + diff;
@@ -321,10 +320,10 @@ begin
       ProcessInstall.ShowWindow := swoHide;
       ProcessInstall.Executable := 'cmd.exe';
       ProcessInstall.Parameters.Add('/c');
-      ProcessInstall.Parameters.Add('"' + TempDir + 'texfireplaceinstall.bat"');
-      ProcessInstall.Parameters.Add(perl);
+      ProcessInstall.Parameters.Add(TempDir + 'texfireplaceinstall.bat');
+      ProcessInstall.Parameters.Add(perlsystem);
       ProcessInstall.Parameters.Add(python);
-      ProcessInstall.Parameters.Add(path);
+      ProcessInstall.Parameters.Add(writepathin);
       ProcessInstall.Execute;
 
       topcoord := 115;
@@ -388,7 +387,7 @@ begin
         if FileExists(TempDir + 'texfireplaceinstall.log') then begin
           try
             ProcessViewLog.Executable := 'notepad.exe';
-            ProcessViewLog.Parameters.Add('"' + TempDir + 'texfireplaceinstall.log"');
+            ProcessViewLog.Parameters.Add(TempDir + 'texfireplaceinstall.log');
             ProcessViewLog.Execute;
           finally
             ProcessViewLog.Free;
