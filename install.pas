@@ -256,7 +256,7 @@ var
   topcoord: integer = 115;
   diff: integer = 25;
 begin
-  if DirectoryExists(InstallDir + 'TeXfireplace') and
+  if DirectoryExists(InstallDir) and
      (MessageDlg('TeXfireplace is already installed. Are you sure you want to reinstall it?',mtWarning,[mbYes,mbNo],0) = mrNo) then Halt;
 
   ButtonBack.Visible := false;
@@ -275,7 +275,7 @@ begin
   if RadioButtonTxsvbs.Checked then path := 'txsvbs';
   if RadioButtonReg.Checked then path := 'reg';
 
-  if DirectoryExists(InstallDir + 'TeXfireplace') then begin
+  if DirectoryExists(InstallDir) then begin
     topcoord := topcoord + diff;
     LabelRemove.Top := topcoord;
     LabelRemove.Visible := true;
