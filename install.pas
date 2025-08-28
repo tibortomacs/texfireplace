@@ -395,6 +395,7 @@ begin
         if FileExists(TempDir + 'texfireplaceinstall-remove.txt') then begin
           DeleteFile(TempDir + 'texfireplaceinstall-remove.txt');
           ImageArrow.Top := LabelRemove.Top;
+          ImageArrow.Update;
           ImageArrow.Visible := true;
         end;
 
@@ -402,40 +403,52 @@ begin
           DeleteFile(TempDir + 'texfireplaceinstall-miktex.txt');
           ImageArrow.Top := LabelMiktex.Top;
           if not ImageArrow.Visible then ImageArrow.Visible := true;
+          ImageArrow.Update;
           if LabelRemove.Visible then ImageCheckRemove.Visible := true;
+          ImageCheckRemove.Update;
         end;
 
         if FileExists(TempDir + 'texfireplaceinstall-perl.txt') then begin
           DeleteFile(TempDir + 'texfireplaceinstall-perl.txt');
           ImageArrow.Top := LabelPerl.Top;
+          ImageArrow.Update;
           ImageCheckMiktex.Visible := true;
+          ImageCheckMiktex.Update;
         end;
 
         if FileExists(TempDir + 'texfireplaceinstall-python.txt') then begin
           DeleteFile(TempDir + 'texfireplaceinstall-python.txt');
           ImageArrow.Top := LabelPython.Top;
+          ImageArrow.Update;
           ImageCheckPerl.Visible := true;
+          ImageCheckPerl.Update;
         end;
 
         if FileExists(TempDir + 'texfireplaceinstall-texstudio.txt') then begin
           DeleteFile(TempDir + 'texfireplaceinstall-texstudio.txt');
           ImageArrow.Top := LabelTexstudio.Top;
+          ImageArrow.Update;
           if LabelPython.Visible then ImageCheckPython.Visible := true else ImageCheckPerl.Visible := true;
+          ImageCheckPerl.Update;
+          ImageCheckPython.Update;
         end;
 
         if FileExists(TempDir + 'texfireplaceinstall-completion.txt') then begin
           DeleteFile(TempDir + 'texfireplaceinstall-completion.txt');
           ImageArrow.Top := LabelCompletion.Top;
+          ImageArrow.Update;
           ImageCheckTexstudio.Visible := true;
+          ImageCheckTexstudio.Update;
         end;
 
-        sleep(50);
+        sleep(100);
         Application.ProcessMessages;
       end;
 
       ProcessInstall.WaitOnExit;
       ProgressBarInstall.Visible := false;
       ImageArrow.Visible := false;
+      ImageArrow.Update;
 
       if ProcessInstall.ExitStatus <> 0 then begin
         LabelInstall.Caption := 'TeXfireplace installation failed!';
@@ -456,6 +469,7 @@ begin
       end
       else begin
         ImageCheckCompletion.Visible := true;
+        ImageCheckCompletion.Update;
         LabelInstall.Caption := 'TeXfireplace installation completed successfully!';
         if CheckBoxPortable.Checked then LabelClick.Caption := 'Run the texstudio.vbs and happy LaTeXing!' else LabelClick.Caption := 'Run the TeXstudio and happy LaTeXing!';
       end;
