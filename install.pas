@@ -325,6 +325,10 @@ begin
       MessageDlg('The specified directory for the portable version does not exist: ' + portable,mtWarning,[mbOk],0);
       Exit;
     end;
+    if DirectoryExists(portable + '\TeXfireplacePortable') then begin
+      MessageDlg('The specified directory for the portable version already contains a TeXfireplacePortable subdirectory. Please choose another one!',mtWarning,[mbOk],0);
+      Exit;
+    end;
   end;
 
   if (PreviousInstallDir <> '') and (not CheckBoxPortable.Checked) and
