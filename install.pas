@@ -337,7 +337,7 @@ begin
   LabelClick.Caption := 'Please be patient while the installation of TeXfireplace is in progress.';
   if RadioButtonTlperl.Checked then LabelPerl.Caption := 'TLPerl' else LabelPerl.Caption := 'Strawberry Perl';
 
-  if DirectoryExists(InstallDir) and (not CheckBoxPortable.Checked) then begin
+  if (PreviousInstallDir <> '') and (not CheckBoxPortable.Checked) then begin
     topcoord := topcoord + diff;
     LabelRemove.Top := topcoord;
     LabelRemove.Visible := true;
