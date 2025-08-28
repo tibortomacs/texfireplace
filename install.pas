@@ -12,14 +12,17 @@ type
   { TFormInstall }
 
   TFormInstall = class(TForm)
+    ButtonPortableDirSel: TButton;
     ButtonInfo: TButton;
     ButtonInstall: TButton;
     ButtonBack: TButton;
     ButtonCancel: TButton;
     ButtonNext: TButton;
+    CheckBoxPortable: TCheckBox;
     CheckBoxTexstudio: TCheckBox;
     CheckBoxMiktex: TCheckBox;
     CheckBoxPython: TCheckBox;
+    PortableDir: TEdit;
     ImageArrow: TImage;
     ImageCheckPython: TImage;
     ImageCheckTexstudio: TImage;
@@ -54,12 +57,15 @@ type
     RadioGroupPath: TRadioGroup;
     RadioGroupPerl: TRadioGroup;
     Background: TShape;
+    SelectPortableDirectoryDialog: TSelectDirectoryDialog;
     procedure ButtonBackClick(Sender: TObject);
     procedure ButtonCancelClick(Sender: TObject);
     procedure ButtonInfoClick(Sender: TObject);
+    procedure ButtonPortableDirSelClick(Sender: TObject);
     procedure ButtonInstallClick(Sender: TObject);
     procedure ButtonNextClick(Sender: TObject);
     procedure CheckBoxMiktexClick(Sender: TObject);
+    procedure CheckBoxPortableClick(Sender: TObject);
     procedure CheckBoxPythonClick(Sender: TObject);
     procedure CheckBoxTexstudioClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
@@ -100,6 +106,8 @@ begin
 
   TempDir := IncludeTrailingPathDelimiter(GetTempDir);
   InstallDir := IncludeTrailingPathDelimiter(GetEnvironmentVariable('LOCALAPPDATA')) + 'TeXfireplace';
+  PortableDir.Text := IncludeTrailingPathDelimiter(GetEnvironmentVariable('USERPROFILE')) + 'Documents';
+  SelectPortableDirectoryDialog.InitialDir := PortableDir.Text;
 
   ImageCheckMiktex.Picture.Assign(ImageCheckRemove.Picture);
   ImageCheckPerl.Picture.Assign(ImageCheckRemove.Picture);
@@ -188,6 +196,47 @@ begin
 end;
 
 // -----------------------------------------------------
+// PORTABLE CHECKBOX CLICK
+// -----------------------------------------------------
+
+procedure TFormInstall.CheckBoxPortableClick(Sender: TObject);
+begin
+  if CheckBoxPortable.Checked then begin
+    PortableDir.Visible := true;
+    ButtonPortableDirSel.Visible := true;
+    ButtonInfo.Visible := false;
+    RadioGroupPath.Visible := false;
+  end
+  else begin
+    PortableDir.Visible := false;
+    ButtonPortableDirSel.Visible := false;
+    RadioGroupPath.Visible := true;
+    if (InfoPerl + InfoTex = '') and ((not CheckBoxPython.Checked) or (InfoPython = '')) then begin
+      RadioButtonTxsini.Enabled := true;
+      RadioButtonReg.Enabled := true;
+      ButtonInfo.Visible := false;
+    end
+    else begin
+      RadioButtonTxsini.Checked := false;
+      RadioButtonTxsvbs.Checked := true;
+      RadioButtonReg.Checked := false;
+      RadioButtonTxsini.Enabled := false;
+      RadioButtonReg.Enabled := false;
+      ButtonInfo.Visible := true;
+    end;
+  end;
+end;
+
+// -----------------------------------------------------
+// PORTABLE DIR SELECTION CLICK
+// -----------------------------------------------------
+
+procedure TFormInstall.ButtonPortableDirSelClick(Sender: TObject);
+begin
+  if SelectPortableDirectoryDialog.Execute then PortableDir.Text := SelectPortableDirectoryDialog.FileName;
+end;
+
+// -----------------------------------------------------
 // MIKTEX CHECKBOX CLICK
 // -----------------------------------------------------
 
@@ -226,7 +275,7 @@ begin
     RadioButtonReg.Checked := false;
     RadioButtonTxsini.Enabled := false;
     RadioButtonReg.Enabled := false;
-    ButtonInfo.Visible := true;
+    if not CheckBoxPortable.Checked then ButtonInfo.Visible := true;
   end;
 end;
 
@@ -251,7 +300,7 @@ end;
 
 procedure TFormInstall.ButtonInstallClick(Sender: TObject);
 var
-  perlsystem, python, writepathin: string;
+  perlsystem, python, writepathin, portable: string;
   ProcessInstall, ProcessViewLog: TProcess;
   topcoord: integer = 115;
   diff: integer = 25;
@@ -263,8 +312,17 @@ begin
   writepathin := 'txsini';
   if RadioButtonTxsvbs.Checked then writepathin := 'txsvbs';
   if RadioButtonReg.Checked then writepathin := 'reg';
+  portable := 'no';
+  if CheckBoxPortable.Checked then begin
+    portable := PortableDir.Text;
+    while (portable <> '') and (portable[Length(portable)] = '\') do Delete(portable, Length(portable), 1);
+    if not DirectoryExists(portable) then begin
+      MessageDlg('The specified directory for the portable version does not exist: ' + portable,mtWarning,[mbOk],0);
+      Exit;
+    end;
+  end;
 
-  if DirectoryExists(InstallDir) and
+  if DirectoryExists(InstallDir) and (not CheckBoxPortable.Checked) and
      (MessageDlg('TeXfireplace is already installed. Are you sure you want to reinstall it?',mtWarning,[mbYes,mbNo],0) = mrNo) then Halt;
 
   ButtonBack.Visible := false;
@@ -274,7 +332,7 @@ begin
   LabelClick.Caption := 'Please be patient while the installation of TeXfireplace is in progress.';
   if RadioButtonTlperl.Checked then LabelPerl.Caption := 'TLPerl' else LabelPerl.Caption := 'Strawberry Perl';
 
-  if DirectoryExists(InstallDir) then begin
+  if DirectoryExists(InstallDir) and (not CheckBoxPortable.Checked) then begin
     topcoord := topcoord + diff;
     LabelRemove.Top := topcoord;
     LabelRemove.Visible := true;
@@ -324,6 +382,7 @@ begin
       ProcessInstall.Parameters.Add(perlsystem);
       ProcessInstall.Parameters.Add(python);
       ProcessInstall.Parameters.Add(writepathin);
+      ProcessInstall.Parameters.Add(portable);
       ProcessInstall.Execute;
 
       topcoord := 115;
@@ -400,7 +459,7 @@ begin
       else begin
         ImageCheckCompletion.Visible := true;
         LabelInstall.Caption := 'TeXfireplace installation completed successfully!';
-        LabelClick.Caption := 'Run the TeXstudio and happy LaTeXing!';
+        if CheckBoxPortable.Checked then LabelClick.Caption := 'Run the texstudio.vbs and happy LaTeXing!' else LabelClick.Caption := 'Run the TeXstudio and happy LaTeXing!';
       end;
 
     except

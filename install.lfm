@@ -482,10 +482,20 @@ object FormInstall: TFormInstall
         ParentColor = False
         ParentFont = False
       end
+      object CheckBoxPortable: TCheckBox
+        Left = 32
+        Height = 19
+        Top = 68
+        Width = 62
+        Caption = 'Portable'
+        TabOrder = 6
+        TabStop = False
+        OnClick = CheckBoxPortableClick
+      end
       object CheckBoxMiktex: TCheckBox
         Left = 32
         Height = 19
-        Top = 72
+        Top = 99
         Width = 321
         Caption = 'TeX-system: MiKTeX (basic version + cmsuper + latexmk)'
         Checked = True
@@ -497,7 +507,7 @@ object FormInstall: TFormInstall
       object CheckBoxTexstudio: TCheckBox
         Left = 32
         Height = 19
-        Top = 106
+        Top = 130
         Width = 394
         Caption = 'LaTeX editor: TeXstudio (modified settings, default compiler is latexmk)'
         Checked = True
@@ -509,7 +519,7 @@ object FormInstall: TFormInstall
       object CheckBoxPython: TCheckBox
         Left = 32
         Height = 19
-        Top = 140
+        Top = 161
         Width = 264
         Caption = 'Python/latexminted for minted LaTeX package'
         Checked = True
@@ -520,7 +530,7 @@ object FormInstall: TFormInstall
       object RadioGroupPerl: TRadioGroup
         Left = 32
         Height = 63
-        Top = 174
+        Top = 192
         Width = 392
         AutoFill = False
         Caption = 'Perl system for Perl scripts (e.g. latexmk)'
@@ -555,7 +565,7 @@ object FormInstall: TFormInstall
       object RadioGroupPath: TRadioGroup
         Left = 32
         Height = 77
-        Top = 252
+        Top = 267
         Width = 392
         AutoFill = False
         Caption = 'Write PATH in'
@@ -604,6 +614,25 @@ object FormInstall: TFormInstall
         TabOrder = 5
         Visible = False
         OnClick = ButtonInfoClick
+      end
+      object ButtonPortableDirSel: TButton
+        Left = 404
+        Height = 19
+        Top = 68
+        Width = 20
+        Caption = '...'
+        TabOrder = 8
+        Visible = False
+        OnClick = ButtonPortableDirSelClick
+      end
+      object PortableDir: TEdit
+        Left = 104
+        Height = 19
+        Top = 68
+        Width = 296
+        AutoSize = False
+        TabOrder = 7
+        Visible = False
       end
     end
     object PageInstall: TPage
@@ -875,6 +904,12 @@ object FormInstall: TFormInstall
       ''
       'set "texdir=%localappdata%\TeXfireplace"'
       ''
+      'set "portable=%~4"'
+      'if "%portable%"=="no" goto endsetportable'
+      'set "writepathin=txsvbs"'
+      'set "texdir=%portable%\TeXfireplacePortable"'
+      ':endsetportable'
+      ''
       ':tempdirname'
       'set "tempdir=%temp%\texfireplace_install_%random%_%random%_%random%"'
       'if exist "%tempdir%" goto tempdirname'
@@ -894,6 +929,7 @@ object FormInstall: TFormInstall
       ''
       ':: Remove previous TeXfireplace installation'
       ''
+      'if not "%portable%"=="no" goto endoldinst'
       'if not exist "%texdir%" goto endoldinst'
       'echo. > "%temp%\texfireplaceinstall-remove.txt"'
       '('
@@ -1251,6 +1287,7 @@ object FormInstall: TFormInstall
       ''
       ':: - uninstall.bat'
       ''
+      'if not "%portable%"=="no" goto enduninstallbat'
       '('
       'echo @echo off'
       'echo chcp 65001 ^> nul'
@@ -1292,25 +1329,32 @@ object FormInstall: TFormInstall
       'echo endlocal'
       'echo pause'
       ') >> "%texdir%\uninstall.bat"'
+      ':enduninstallbat'
       ''
       ':: - texfireplace.ico'
       ''
+      'if not "%portable%"=="no" goto endtexfireplaceico'
       'curl -s -f -L -o texfireplace.ico --output-dir "%texdir%" https://tibortomacs.github.io/texfireplace/texfireplace.ico'
       'if %errorlevel% neq 0 set "exit_code=1" & echo - ERROR: Downloading texfireplace.ico failed >> "%temp%\texfireplaceinstall.log" & goto endinstall'
+      ':endtexfireplaceico'
       ''
       ':: - Uninstall in registry'
       ''
+      'if not "%portable%"=="no" goto enduninstallinregistry'
       'reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Uninstall\TeXfireplace" /f'
       'reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Uninstall\TeXfireplace" /v DisplayName /t REG_SZ /d "TeXfireplace" /f'
       'reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Uninstall\TeXfireplace" /v DisplayIcon /t REG_SZ /d "\"%texdir%\texfireplace.ico\"" /f'
       'reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Uninstall\TeXfireplace" /v UninstallString /t REG_SZ /d "\"%texdir%\uninstall.bat\"" /f'
+      ':enduninstallinregistry'
       ''
       ':: - TeX file association'
       ''
+      'if not "%portable%"=="no" goto endtexfileassociation'
       'reg add "HKCU\Software\Classes\.tex" /ve /d "texfile" /f'
       'if "%writepathin%"=="txsvbs" reg add "HKCU\Software\Classes\texfile\shell\open\command" /ve /d "WScript.exe \"%texdir%\texstudio.vbs\" \"%%1\"" /f'
       'if not "%writepathin%"=="txsvbs" reg add "HKCU\Software\Classes\texfile\shell\open\command" /ve /d "\"%texdir%\texstudio\texstudio.exe\" \"%%1\"" /f'
       'reg add "HKCU\Software\Classes\texfile\DefaultIcon" /ve /d "%texdir%\texstudio\texstudio.exe,0" /f'
+      ':endtexfileassociation'
       ''
       ':: - Setting path'
       ''
@@ -1334,7 +1378,11 @@ object FormInstall: TFormInstall
       '('
       'echo TeXfireplace - An easy-to-install compact framework for using LaTeX on Windows'
       'echo.'
-      'echo PATH: %texdir% '
+      ') > "%texdir%\readme.txt"'
+      'if "%portable%"=="no" ('
+      'echo PATH: %texdir%'
+      ') >> "%texdir%\readme.txt" '
+      '('
       'echo Date of installation: %date: =% (%time: =%^)'
       'echo.'
       'echo Installed components'
@@ -1346,7 +1394,7 @@ object FormInstall: TFormInstall
       'if "%python%"=="yes"            echo   - Python/latexminted'
       'echo.'
       'if "%writepathin%"=="reg" echo PATH is written in the registry (HKCU^) at the beginning of the %%PATH%% environment variable.'
-      ') > "%texdir%\readme.txt"'
+      ') >> "%texdir%\readme.txt"'
       ''
       'if "%writepathin%"=="txsvbs" ('
       'echo PATH is written in the texstudio.vbs.'
@@ -1376,6 +1424,7 @@ object FormInstall: TFormInstall
       ''
       ':: - Shortcuts'
       ''
+      'if not "%portable%"=="no" goto endshortcuts'
       '('
       'echo Set WshShell = CreateObject("Wscript.shell"^)'
       'echo Set FSO = CreateObject("Scripting.FileSystemObject"^)'
@@ -1416,6 +1465,7 @@ object FormInstall: TFormInstall
       ') > "%texdir%\makeshortcut.vbs"'
       'cscript /nologo "%texdir%\makeshortcut.vbs"'
       'del "%texdir%\makeshortcut.vbs"'
+      ':endshortcuts'
       ''
       ':: End of installation'
       ''
@@ -1435,7 +1485,7 @@ object FormInstall: TFormInstall
     WordWrap = False
   end
   object MemoTexstudioIni: TMemo
-    Left = 92
+    Left = 84
     Height = 25
     Top = 368
     Width = 70
@@ -1499,5 +1549,10 @@ object FormInstall: TFormInstall
     TabOrder = 6
     Visible = False
     WordWrap = False
+  end
+  object SelectPortableDirectoryDialog: TSelectDirectoryDialog
+    Title = 'Select TeXfireplace portable directory'
+    Left = 168
+    Top = 366
   end
 end
