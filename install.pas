@@ -5,7 +5,7 @@ unit install;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, ComCtrls, Process, FileUtil;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls, ComCtrls, Process, FileUtil, InstallRootUtils;
 
 type
 
@@ -83,7 +83,7 @@ var
   InfoPython: string = '';
   InfoTex: string = '';
   InfoPath: string = '';
-  TempDir, InstallDir: string;
+  TempDir, InstallDir, PreviousInstallDir: string;
 
 implementation
 
@@ -106,6 +106,11 @@ begin
 
   TempDir := IncludeTrailingPathDelimiter(GetTempDir);
   InstallDir := IncludeTrailingPathDelimiter(GetEnvironmentVariable('LOCALAPPDATA')) + 'TeXfireplace';
+
+  GetInstallRootFromRegistry('Software\Microsoft\Windows\CurrentVersion\Uninstall\TeXfireplace', PreviousInstallDir, True, True);
+  if PreviousInstallDir = '' then GetInstallRootFromRegistry('Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\TeXfireplace', PreviousInstallDir, True, True);
+  if PreviousInstallDir <> '' then PreviousInstallDir := IncludeTrailingPathDelimiter(PreviousInstallDir);
+
   PortableDir.Text := IncludeTrailingPathDelimiter(GetEnvironmentVariable('USERPROFILE')) + 'Documents';
   SelectPortableDirectoryDialog.InitialDir := PortableDir.Text;
 
@@ -287,9 +292,9 @@ procedure TFormInstall.ButtonInfoClick(Sender: TObject);
 var
   Info: string = '';
 begin
-  if InfoTex <> '' then Info := Info + InfoTex + #10 + #10;
-  if (InfoPython <> '') and  CheckBoxPython.Checked then Info := Info + InfoPython + #10 + #10;
-  if InfoPerl <> '' then Info := Info + InfoPerl + #10 + #10;
+  if InfoTex <> '' then Info := Info + InfoTex + #10#10;
+  if (InfoPython <> '') and  CheckBoxPython.Checked then Info := Info + InfoPython + #10#10;
+  if InfoPerl <> '' then Info := Info + InfoPerl + #10#10;
   if InfoPath <> '' then Info := Info + InfoPath;
   MessageDlg(Info,mtInformation,[mbOk],0)
 end;
@@ -322,8 +327,8 @@ begin
     end;
   end;
 
-  if DirectoryExists(InstallDir) and (not CheckBoxPortable.Checked) and
-     (MessageDlg('TeXfireplace is already installed. Are you sure you want to reinstall it?',mtWarning,[mbYes,mbNo],0) = mrNo) then Halt;
+  if (PreviousInstallDir <> '') and (not CheckBoxPortable.Checked) and
+     (MessageDlg('TeXfireplace is already installed:' + #10 + PreviousInstallDir + #10#10 + 'Are you sure you want to reinstall it?',mtWarning,[mbYes,mbNo],0) = mrNo) then Halt;
 
   ButtonBack.Visible := false;
   ButtonInstall.Visible := false;
@@ -383,6 +388,7 @@ begin
       ProcessInstall.Parameters.Add(python);
       ProcessInstall.Parameters.Add(writepathin);
       ProcessInstall.Parameters.Add(portable);
+      ProcessInstall.Parameters.Add(PreviousInstallDir);
       ProcessInstall.Execute;
 
       topcoord := 115;
