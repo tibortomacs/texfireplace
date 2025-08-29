@@ -396,23 +396,27 @@ begin
       ProcessInstall.Execute;
 
       while ProcessInstall.Running do begin
-        if FileExists(TempDir + 'texfireplaceinstall-remove.txt') then begin
+        if FileExists(TempDir + 'texfireplaceinstall-remove.txt') and (ImageArrow.Top < LabelRemove.Top) then begin
           DeleteFile(TempDir + 'texfireplaceinstall-remove.txt');
           ImageArrow.Top := LabelRemove.Top;
-          ImageArrow.Update;
           ImageArrow.Visible := true;
+          ImageArrow.Update;
         end;
 
-        if FileExists(TempDir + 'texfireplaceinstall-miktex.txt') then begin
+        if FileExists(TempDir + 'texfireplaceinstall-miktex.txt') and (ImageArrow.Top < LabelMiktex.Top) then begin
           DeleteFile(TempDir + 'texfireplaceinstall-miktex.txt');
           ImageArrow.Top := LabelMiktex.Top;
-          if not ImageArrow.Visible then ImageArrow.Visible := true;
-          ImageArrow.Update;
-          if LabelRemove.Visible then ImageCheckRemove.Visible := true;
-          ImageCheckRemove.Update;
+          if LabelRemove.Visible then begin
+            ImageCheckRemove.Visible := true;
+            ImageCheckRemove.Update;
+          end
+          else begin
+            ImageArrow.Visible := true;
+            ImageArrow.Update;
+          end;
         end;
 
-        if FileExists(TempDir + 'texfireplaceinstall-perl.txt') then begin
+        if FileExists(TempDir + 'texfireplaceinstall-perl.txt') and (ImageArrow.Top < LabelPerl.Top) then begin
           DeleteFile(TempDir + 'texfireplaceinstall-perl.txt');
           ImageArrow.Top := LabelPerl.Top;
           ImageArrow.Update;
@@ -420,7 +424,7 @@ begin
           ImageCheckMiktex.Update;
         end;
 
-        if FileExists(TempDir + 'texfireplaceinstall-python.txt') then begin
+        if FileExists(TempDir + 'texfireplaceinstall-python.txt') and (ImageArrow.Top < LabelPython.Top) then begin
           DeleteFile(TempDir + 'texfireplaceinstall-python.txt');
           ImageArrow.Top := LabelPython.Top;
           ImageArrow.Update;
@@ -428,7 +432,7 @@ begin
           ImageCheckPerl.Update;
         end;
 
-        if FileExists(TempDir + 'texfireplaceinstall-texstudio.txt') then begin
+        if FileExists(TempDir + 'texfireplaceinstall-texstudio.txt') and (ImageArrow.Top < LabelTexstudio.Top) then begin
           DeleteFile(TempDir + 'texfireplaceinstall-texstudio.txt');
           ImageArrow.Top := LabelTexstudio.Top;
           ImageArrow.Update;
@@ -437,7 +441,7 @@ begin
           ImageCheckPython.Update;
         end;
 
-        if FileExists(TempDir + 'texfireplaceinstall-completion.txt') then begin
+        if FileExists(TempDir + 'texfireplaceinstall-completion.txt') and (ImageArrow.Top < LabelCompletion.Top) then begin
           DeleteFile(TempDir + 'texfireplaceinstall-completion.txt');
           ImageArrow.Top := LabelCompletion.Top;
           ImageArrow.Update;
