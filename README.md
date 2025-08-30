@@ -39,12 +39,14 @@ for `minted` ([https://ctan.org/pkg/minted](https://ctan.org/pkg/minted)) LaTeX 
 
 Download the **[TeXfireplace installer][Download]** (about 4MB) and run it! Internet connection is required for installation.
 After finishing the process (about 5-10 minutes) click the TeXstudio icon on the desktop (or in the start menu) and happy LaTeXing!
+When using the portable version, you must run TeXstudio with the texfireplace.vbs file.
 
 [<img src="download.svg" height="30"/>][Download]
 
-**SHA-256:** `3193c8b9be6d98ab34c899bee8010190f8c2509e4538637b69e8a7bba241a08c`
+**SHA-256:** `1fad946aa68ae5f2dc3b90a565d5ec65bc170a9117477c7b4c57547f891494a8`
 
 - The TeXfireplace framework will be installed for the current user, no admin privileges are required.
+  The installation can be made portable.
 
 - You can set which Perl system you want to use (TLPerl or Strawberry Perl).
 
@@ -57,6 +59,7 @@ After finishing the process (about 5-10 minutes) click the TeXstudio icon on the
      If you choose this, the PATHs are made available using TeXstudio and are placed at the end of the `%PATH%` environment variable.
      However, in the terminal started from TeXstudio, the PATHs are placed at the beginning of the `%PATH%` environment variable.
      When using an external terminal, the `%PATH%` environment variable will not contain the PATHs to TeXfireplace.
+     This option cannot be selected if a TeX system, Perl, or Python has already been installed.
 
      - **TeXstudio Startup file (texstudio.vbs)** <br>
      The texstudio.vbs is a startup file for TeXstudio which will put the PATHs at the beginning of the `%PATH%` environment variable before running.
@@ -65,6 +68,7 @@ After finishing the process (about 5-10 minutes) click the TeXstudio icon on the
 
      - **Registry for the current user** <br>
      If you choose this, the PATHs will be written in the registry (HKCU) at the beginning of the `%PATH%` environment variable.
+     This option cannot be selected if a TeX system, Perl, or Python has already been installed.
 
 ## Give feedback
 
