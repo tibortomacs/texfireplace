@@ -39,7 +39,7 @@ for `minted` ([https://ctan.org/pkg/minted](https://ctan.org/pkg/minted)) LaTeX 
 
 Download the **[TeXfireplace installer][Download]** (about 4MB) and run it! Internet connection is required for installation.
 After finishing the process (about 5-10 minutes) click the TeXstudio icon on the desktop (or in the start menu) and happy LaTeXing!
-When using the portable version, you must run TeXstudio with the texfireplace.vbs file.
+When using the portable version, you must run TeXstudio with the texstudio.vbs file.
 
 [<img src="download.svg" height="30"/>][Download]
 
