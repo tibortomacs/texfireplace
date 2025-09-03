@@ -109,7 +109,10 @@ begin
 
   GetInstallRootFromRegistry('Software\Microsoft\Windows\CurrentVersion\Uninstall\TeXfireplace', PreviousInstallDir, True, True);
   if PreviousInstallDir = '' then GetInstallRootFromRegistry('Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\TeXfireplace', PreviousInstallDir, True, True);
-  if PreviousInstallDir <> '' then PreviousInstallDir := IncludeTrailingPathDelimiter(PreviousInstallDir);
+  if PreviousInstallDir = '' then
+    PreviousInstallDir := 'no'
+  else
+    PreviousInstallDir := IncludeTrailingPathDelimiter(PreviousInstallDir);
 
   PortableDir.Text := IncludeTrailingPathDelimiter(GetEnvironmentVariable('USERPROFILE')) + 'Documents';
   SelectPortableDirectoryDialog.InitialDir := PortableDir.Text;
@@ -331,8 +334,8 @@ begin
     end;
   end;
 
-  if (PreviousInstallDir <> '') and (not CheckBoxPortable.Checked) and
-     (MessageDlg('TeXfireplace is already installed:' + #10 + PreviousInstallDir + #10#10 + 'Are you sure you want to reinstall it?',mtWarning,[mbYes,mbNo],0) = mrNo) then Halt;
+  if (PreviousInstallDir <> 'no') and (not CheckBoxPortable.Checked) and
+     (MessageDlg('TeXfireplace is already installed.' + #10 + 'Are you sure you want to reinstall it?',mtWarning,[mbYes,mbNo],0) = mrNo) then Halt;
 
   ButtonBack.Visible := false;
   ButtonInstall.Visible := false;
@@ -341,7 +344,7 @@ begin
   LabelClick.Caption := 'Please be patient while the installation of TeXfireplace is in progress.';
   if RadioButtonTlperl.Checked then LabelPerl.Caption := 'TLPerl' else LabelPerl.Caption := 'Strawberry Perl';
 
-  if (PreviousInstallDir <> '') and (not CheckBoxPortable.Checked) then begin
+  if (PreviousInstallDir <> 'no') and (not CheckBoxPortable.Checked) then begin
     topcoord := topcoord + diff;
     LabelRemove.Top := topcoord;
     LabelRemove.Visible := true;
