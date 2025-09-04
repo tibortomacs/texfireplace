@@ -1667,7 +1667,7 @@ object FormInstall: TFormInstall
       ':: ========================================='
       ''
       'if not "%writepathin%"=="reg" goto endpathtoreg'
-      'if not "%previousinstalldir%"=="no" for /f "usebackq delims=" %%a in (`powershell -NoProfile -Command "(Get-ItemProperty -Path ''HKCU:\Environment'' -Name Path -ErrorAction SilentlyContinue).Path"`) do set "userpath=%%a"'
+      'for /f "usebackq delims=" %%a in (`powershell -NoProfile -Command "(Get-ItemProperty -Path ''HKCU:\Environment'' -Name Path -ErrorAction SilentlyContinue).Path"`) do set "userpath=%%a"'
       'if not "%userpath%"=="" call set "userpath=%%userpath:%texfpdir%\python\Scripts;=%%"'
       'if not "%userpath%"=="" call set "userpath=%%userpath:%texfpdir%\python;=%%"'
       'if not "%userpath%"=="" call set "userpath=%%userpath:%texfpdir%\perl\bin;=%%"'
