@@ -43,7 +43,7 @@ When using the portable version, you must run TeXstudio with the texstudio.vbs f
 
 [<img src="download.svg" height="30"/>][Download]
 
-**SHA-256:** `1dd52973d37fb2dd98dd1b9d1c627574d51152149e6516c19979cea6de73dac1`
+**SHA-256:** `b60c3b44d63593b20cc31179f8f93b0502bccdf8f1f11dbc7b35451021b964ff`
 
 - The TeXfireplace framework will be installed for the current user, no admin privileges are required.
   The installation can be made portable.
