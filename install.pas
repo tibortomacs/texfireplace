@@ -378,6 +378,16 @@ begin
   LabelCompletion.Visible := true;
   ImageCheckCompletion.Top := topcoord;
 
+  DeleteFile(TempDir + 'texfireplaceinstall.bat');
+  DeleteFile(TempDir + 'texfireplaceinstall.log');
+  DeleteFile(TempDir + 'texstudio.ini');
+  DeleteFile(TempDir + 'texfireplaceinstall-remove.txt');
+  DeleteFile(TempDir + 'texfireplaceinstall-miktex.txt');
+  DeleteFile(TempDir + 'texfireplaceinstall-perl.txt');
+  DeleteFile(TempDir + 'texfireplaceinstall-python.txt');
+  DeleteFile(TempDir + 'texfireplaceinstall-texstudio.txt');
+  DeleteFile(TempDir + 'texfireplaceinstall-completion.txt');
+
   ProgressBarInstall.Visible := true;
 
   ProcessInstall := TProcess.Create(nil);
@@ -501,7 +511,7 @@ begin
   end;
 
   DeleteFile(TempDir + 'texfireplaceinstall.bat');
-  if FileExists(TempDir + 'texstudio.ini') then DeleteFile(TempDir + 'texstudio.ini');
+  DeleteFile(TempDir + 'texstudio.ini');
   ButtonCancel.Enabled := true;
 end;
 
