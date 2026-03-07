@@ -520,8 +520,8 @@ object FormInstall: TFormInstall
         Left = 32
         Height = 19
         Top = 161
-        Width = 264
-        Caption = 'Python/latexminted for minted LaTeX package'
+        Width = 287
+        Caption = 'Python system for Python scripts (e.g. latexminted)'
         Checked = True
         State = cbChecked
         TabOrder = 2
@@ -711,8 +711,8 @@ object FormInstall: TFormInstall
         Left = 54
         Height = 17
         Top = 215
-        Width = 111
-        Caption = 'Python/latexminted'
+        Width = 39
+        Caption = 'Python'
         Font.CharSet = EASTEUROPE_CHARSET
         Font.Height = -13
         Font.Pitch = fpVariable
@@ -1244,7 +1244,7 @@ object FormInstall: TFormInstall
       '  echo('
       '  echo Python'
       ') >> "%logfile%"'
-      'goto pythonolderversion & rem latexminted does not work on Python3.14'
+      'goto pythonolderversion & rem - latexminted does not work on Python3.14'
       'for /f "tokens=1,2" %%i in (''curl -s -f -L https://docs.python.org/ ^| findstr "<h1>Python"'') do set "pythonver=%%j"'
       'set "pythonurl=https://www.python.org/ftp/python/%pythonver%/python-%pythonver%-embed-amd64.zip"'
       'echo - URL: %pythonurl% >> "%logfile%"'
@@ -1320,12 +1320,7 @@ object FormInstall: TFormInstall
       '  set "exit_code=1"'
       '  goto endinstall'
       ')'
-      '"%texfpdir%\python\python.exe" -m pip install latexminted'
-      'if not exist "%texfpdir%\python\Scripts\latexminted.exe" ('
-      '  echo - ERROR: Installation of latexminted failed >> "%logfile%"'
-      '  set "exit_code=1"'
-      '  goto endinstall'
-      ')'
+      '"%texfpdir%\python\python.exe" -m pip install Pygments & rem - For minted2 LaTeX package'
       'if not exist "%texfpdir%\python\Scripts\pygmentize.exe" ('
       '  echo - ERROR: Installation of pygmentize failed >> "%logfile%"'
       '  set "exit_code=1"'
@@ -1539,13 +1534,12 @@ object FormInstall: TFormInstall
       '  echo echo('
       '  echo "%%~dp0texmfs\install\miktex\bin\x64\miktex" packages update'
       '  echo echo('
-      '  echo echo -----------------------------'
-      '  echo echo Updating Pygments/latexminted'
-      '  echo echo -----------------------------'
+      '  echo echo -----------------'
+      '  echo echo Updating Pygments'
+      '  echo echo -----------------'
       '  echo echo('
       '  echo if exist "%%~dp0python\Scripts\pip.exe" "%%~dp0python\python.exe" -m pip install --upgrade pip --no-warn-script-location'
       '  echo if exist "%%~dp0python\Scripts\pygmentize.exe" "%%~dp0python\python.exe" -m pip install --upgrade Pygments --no-warn-script-location'
-      '  echo if exist "%%~dp0python\Scripts\latexminted.exe" "%%~dp0python\python.exe" -m pip install --upgrade latexminted --no-warn-script-location'
       '  echo echo('
       '  echo echo ------------------'
       '  echo echo Updating TeXstudio'
@@ -1713,7 +1707,7 @@ object FormInstall: TFormInstall
       '  echo   - TeXstudio'
       '  if "%perlsystem%"=="strawberry" echo   - Strawberry Perl'
       '  if "%perlsystem%"=="tlperl"     echo   - TLPerl'
-      '  if "%python%"=="yes"            echo   - Python/latexminted'
+      '  if "%python%"=="yes"            echo   - Python'
       '  echo('
       '  if "%writepathin%"=="reg" echo PATH is written in the registry (HKCU^) at the beginning of the %%PATH%% environment variable.'
       '  if "%writepathin%"=="txsvbs" ('

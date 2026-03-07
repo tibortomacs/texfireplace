@@ -25,15 +25,11 @@ By default, the `latexmk` automates the process of compiling the LaTeX documents
 or
 **Strawberry Perl**
 ([https://strawberryperl.com](https://strawberryperl.com)) <br>
-for running Perl scripts such as `latexmk` ([https://ctan.org/pkg/latexmk](https://ctan.org/pkg/latexmk)).
+For running Perl scripts such as `latexmk` ([https://ctan.org/pkg/latexmk](https://ctan.org/pkg/latexmk)).
 
 - **Python**
-([https://www.python.org](https://www.python.org)),
-**Pygments**
-([https://pygments.org](https://pygments.org))
-and
-**latexminted**<br>
-for `minted` ([https://ctan.org/pkg/minted](https://ctan.org/pkg/minted)) LaTeX package.
+([https://www.python.org](https://www.python.org)) <br>
+For running Python scripts such as `latexminted`.
 
 ## Installing TeXfireplace
 
@@ -43,7 +39,7 @@ When using the portable version, you must run TeXstudio with the texstudio.vbs f
 
 [<img src="download.svg" height="30"/>][Download]
 
-**SHA-256:** `ef8767a3db91fe6a44e759c95313fefde1e3240de7a8ea8fe3caef029a8ec0d4`
+**SHA-256:** `19b5a346ee49b211ad064957c968286ba7364d0b4324f729b9f272074a066f5f`
 
 - The TeXfireplace framework will be installed for the current user, no admin privileges are required.
   The installation can be made portable.
@@ -85,6 +81,6 @@ The TeXfireplace icon is provided by Recognize (recognizeapp.com) as Creative Co
 The GUI is written in Free Pascal using Lazarus.
 It is a free and open source program maintained by Tibor Tómács.*
 
-*© Copyright 2022–2025 Tibor Tómács*
+*© Copyright 2022–2026 Tibor Tómács*
 
 ---
