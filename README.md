@@ -46,7 +46,7 @@ When using the portable version, you must run TeXstudio with the texstudio.vbs f
 
 - You can set which Perl system you want to use (TLPerl or Strawberry Perl).
 
-- The installation of Python/latexminted is optional.
+- The installation of Python is optional.
 
 - There are three options where to specify the PATHs to use TeXfireplace:
 
