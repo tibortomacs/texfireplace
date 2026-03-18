@@ -35,11 +35,11 @@ For running Python scripts such as `latexminted`.
 
 Download the **[TeXfireplace installer][Download]** (about 4MB) and run it! Internet connection is required for installation.
 After finishing the process (about 5-10 minutes) click the TeXstudio icon on the desktop (or in the start menu) and happy LaTeXing!
-When using the portable version, you must run TeXstudio with the texstudio.vbs file.
+When using the portable version, you must run TeXstudio via the texstudio.vbs file.
 
 [<img src="download.svg" height="30"/>][Download]
 
-**SHA-256:** `19b5a346ee49b211ad064957c968286ba7364d0b4324f729b9f272074a066f5f`
+**SHA-256:** `7f6950b32078bd7125430b1943fa71e1957182ffb24d2dd822fc36aa8d7e5701`
 
 - The TeXfireplace framework will be installed for the current user, no admin privileges are required.
   The installation can be made portable.
