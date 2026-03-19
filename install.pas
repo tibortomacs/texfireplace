@@ -274,13 +274,12 @@ begin
   if (not CheckBoxPython.Checked) and (InfoPerl + InfoTex = '') then begin
     RadioButtonTxsini.Enabled := true;
     RadioButtonReg.Enabled := true;
+    RadioButtonReg.Checked := true;
     ButtonInfo.Visible := false;
   end;
 
   if CheckBoxPython.Checked and (InfoPython <> '') then begin
-    RadioButtonTxsini.Checked := false;
     RadioButtonTxsvbs.Checked := true;
-    RadioButtonReg.Checked := false;
     RadioButtonTxsini.Enabled := false;
     RadioButtonReg.Enabled := false;
     if not CheckBoxPortable.Checked then ButtonInfo.Visible := true;
