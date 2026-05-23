@@ -1853,8 +1853,6 @@ object FormInstall: TFormInstall
       'Files\RestoreSession=false'
       'GUI\PDFToobarIconSize=23'
       'GUI\SecondaryToobarIconSize=24'
-      'GUI\Style=1'
-      'GUI\Icon%20Theme=1'
       'GUI\Texmaker%20Palette=true'
       'GUI\ToobarIconSize=30'
       'GUI\Use%20System%20Theme=false'
@@ -1876,7 +1874,6 @@ object FormInstall: TFormInstall
       'Tools\Show%20Stdout=2'
       'Update\AutoCheck=false'
       'X11\Font%20Size=10'
-      'X11\Style='
     )
     TabOrder = 6
     Visible = False
