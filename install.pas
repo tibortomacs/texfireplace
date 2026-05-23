@@ -83,7 +83,7 @@ var
   InfoPython: string = '';
   InfoTex: string = '';
   InfoPath: string = '';
-  TempDir, InstallDir, PreviousInstallDir: string;
+  TempDir, PreviousInstallDir: string;
 
 implementation
 
@@ -105,7 +105,6 @@ begin
   end;
 
   TempDir := IncludeTrailingPathDelimiter(GetTempDir);
-  InstallDir := IncludeTrailingPathDelimiter(GetEnvironmentVariable('LOCALAPPDATA')) + 'TeXfireplace';
 
   GetInstallRootFromRegistry('Software\Microsoft\Windows\CurrentVersion\Uninstall\TeXfireplace', PreviousInstallDir, True, True);
   if PreviousInstallDir = '' then GetInstallRootFromRegistry('Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\TeXfireplace', PreviousInstallDir, True, True);
