@@ -1540,7 +1540,7 @@ object FormInstall: TFormInstall
       '  echo chcp 437 ^>nul'
       '  echo for /f "usebackq delims=" %%%%a in (`powershell -NoProfile -Command "((Invoke-RestMethod -Uri ''https://api.github.com/repos/texstudio-org/texstudio/releases/latest'').assets | Where-Object { $_.name -like ''*win-portable-qt6.zip'' } | Select-Object -First 1).browser_download_url"`^) do set "txsurl=%%%%a"'
       '  echo for /f "usebackq delims=" %%%%a in (`powershell -NoProfile -Command "(Invoke-RestMethod -Uri ''https://api.github.com/repos/texstudio-org/texstudio/releases/latest'').tag_name.TrimStart(''v'')"`^) do set "latesttxsver=%%%%a"'
-      '  echo for /f "usebackq delims=" %%%%a in (`powershell -Command "((Get-Item ''%%~dp0texstudio\texstudio.exe'').VersionInfo.FileVersion).Split(''-'')[0]"`^) do set "installedtxsver=%%%%a"'
+      '  echo for /f "usebackq delims=" %%%%a in (`powershell -NoProfile -Command "((Get-Item ''%%~dp0texstudio\texstudio.exe'').VersionInfo.FileVersion).Split(''-'')[0]"`^) do set "installedtxsver=%%%%a"'
       '  echo chcp 65001 ^> nul'
       '  echo if [%%installedtxsver%%]==[%%latesttxsver%%] echo There are currently no updates available. ^& goto endupdate'
       '  echo curl -s -f -L -o texstudio.zip %%txsurl%%'
