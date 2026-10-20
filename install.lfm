@@ -1461,7 +1461,7 @@ object FormInstall: TFormInstall
       '  echo   runArg = Quote(WScript.Arguments.Item(0^)^)'
       '  echo End If'
       '  echo('
-      '  echo oShell.Run Quote(exePath^) ^& runArg, 1, False'
+      '  echo oShell.Run Quote(exePath^) ^& " " ^& runArg, 1, False'
       '  echo('
       '  echo Function Quote(s^)'
       '  echo   Quote = Chr(34^) ^& s ^& Chr(34^)'
